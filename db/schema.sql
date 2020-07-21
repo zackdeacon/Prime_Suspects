@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS pure_cloud;
+CREATE DATABASE pure_cloud;
