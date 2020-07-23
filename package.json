@@ -9,7 +9,9 @@
     "mysql": "^2.18.1",
     "mysql2": "^2.1.0",
     "path": "^0.12.7",
-    "sequelize": "^6.3.3"
+    "sequelize": "^6.3.3",
+    "stripe": "^8.78.0",
+    "uuid": "^8.2.0"
   },
   "devDependencies": {},
   "scripts": {
