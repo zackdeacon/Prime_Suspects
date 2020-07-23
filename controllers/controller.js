@@ -5,7 +5,7 @@ var router = express.Router();
 
 var db = require("../models/");
 
-
+// route to find all items 
 router.get("/", function(req, res) {
   
   // res.send("hello home page");
@@ -18,6 +18,19 @@ router.get("/", function(req, res) {
 
 });
 
+//creating user profiles 
+router.post("/item/create", function(req, res) {
+  db.item.create({
+    name: req.body.name,
+    prices_amountMax: req.body.priceMax,
+    prices_amountMin: req.body.priceMin,
+    prices_merchant: req.body.merchantName,
+    brand: req.body.brand
+  }).then(function(dbitem) {
+      console.log(dbitem);
+      res.redirect("/");
+    });
+});
 router.get('/public-keys', (req, res) => {
   res.send({ key: process.env.STRIPE_PUBLISHABLE_KEY})
 })
@@ -48,40 +61,33 @@ router.post('/webhook', (req, res) => {
   res.send({ message: 'success' });
 })
 
-// router.get("/burgers", function(req, res) {
+//updating user profile with address,phone number etc. 
+router.put("/item/update/:id", function(req, res) {
+  db.item.update({
+    // devoured: true
+  },
+  {
+    where: {
+      id: req.params.id
+    }
+  }
+  ).then(function(dbitem) {
+    res.json("/");
+  });
+});
 
-//   db.Burger.findAll()
+//route to delete items from shopping cart 
+router.delete("/api/items/:id", function(req, res) {
+  var condition = "id = " + req.params.id;
 
-//     .then(function(dbBurger) {
-//       console.log(dbBurger);
-//       const dbBurgersJson = dbBurger.map(burger=>burger.toJSON());
-//       var hbsObject = { burger: dbBurgersJson };
-//       return res.render("index", hbsObject);
-//     });
-// });
-
-// router.post("/burgers/create", function(req, res) {
-//   db.Burger.create({
-//     burger_name: req.body.burger_name
-//   }).then(function(dbBurger) {
-//       console.log(dbBurger);
-//       res.redirect("/");
-//     });
-// });
-
-
-// router.put("/burgers/update/:id", function(req, res) {
-//   db.Burger.update({
-//     devoured: true
-//   },
-//   {
-//     where: {
-//       id: req.params.id
-//     }
-//   }
-//   ).then(function(dbBurger) {
-//     res.json("/");
-//   });
-// });
+  db.item.delete(condition, function(result) {
+    if (result.affectedRows == 0) {
+      // If no rows were changed, then the ID must not exist, so 404
+      return res.status(404).end();
+    } else {
+      res.status(200).end();
+    }
+  });
+});
 
 module.exports = router;
