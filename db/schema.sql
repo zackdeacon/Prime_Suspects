@@ -1,2 +1,31 @@
 DROP DATABASE IF EXISTS pure_cloud;
 CREATE DATABASE pure_cloud;
+
+-- CREATE TABLE items (
+--   id INT NOT NULL,
+--     table_id VARCHAR(250),
+--       amount_max DECIMAL (5,10),
+--       amount_min DECIMAL (5,10),
+--       availibility VARCHAR(250),
+--       condition VARCHAR(250),
+--       currency VARCHAR(250),
+--       dateSeen VARCHAR(250),
+--       isSale BOOLEAN,
+--       merchant VARCHAR(250),
+--       shipping VARCHAR(250),
+--       prices_sourceURLS URL,
+--       asins VARCHAR(250),
+--       brand VARCHAR(250),
+--       categories VARCHAR(250),
+--       dateadded DATE TIMESTAMP,
+--       dateupdated DATE TIMESTAMP,
+--       ean DECIMAL (5,10),
+--       imageurls URL,
+--       keys VARCHAR(250),
+--       manufacturer VARCHAR(250),
+--       manufacturernumber VARCHAR(250),
+--       name VARCHAR(250),
+--       sourceURLS URL,
+--       upc VARCHAR(250),
+--       wieght VARCHAR(250)
+-- );

@@ -1,11 +1,14 @@
 {
   "name": "Prime_Suspects",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "dependencies": {
+    "csv-parser": "^2.3.3",
     "express": "^4.17.1",
+    "express-handlebars": "^5.1.0",
+    "mysql": "^2.18.1",
     "mysql2": "^2.1.0",
+    "path": "^0.12.7",
     "sequelize": "^6.3.3"
   },
   "devDependencies": {},
@@ -23,5 +26,6 @@
   "bugs": {
     "url": "https://github.com/zackdeacon/Prime_Suspects/issues"
   },
-  "homepage": "https://github.com/zackdeacon/Prime_Suspects#readme"
+  "homepage": "https://github.com/zackdeacon/Prime_Suspects#readme",
+  "description": ""
 }
