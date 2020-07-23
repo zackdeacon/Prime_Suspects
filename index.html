@@ -10,8 +10,9 @@
 <body>
 <!-- nav bar -->
 <div class="container">
-  <ul id = "dropdown1" class = "dropdown-menu-right">
+  <ul id = "dropdown1" class = "dropdown-content right">
     <li class="blue-grey lighten-4 text-deep-purple-darken-4"><a href = "#!">Home</a></li>
+    <li class = "divider"></li>
     <li class="blue-grey darken-1"><a href = "#!">Shop</a></li>
     <li class = "divider"></li>
     <li class="light-blue"><a href = "#!">Go to my Shopping Cart</a></li>
@@ -24,17 +25,18 @@
     <div class="row"></div>
     <form id="nav-mobile">
       <div class="input-field">
-        <input id="search" type="search" required>
+        <input class="light-blue darken-3" id="search" type="search" required>
         <label class="label-icon" for="search"><i class="material-icons">search</i></label>
         <i class="material-icons">close</i>
       </div>
     </form>
   </div>
-
-      <a href="#" class="brand-logo center">PureCloud Electronics</a>
+      <div class="brand-logo center">
+      <img src="public\images\Logo1.jpeg" >
+      </div>
       <ul id="nav-mobile" class="right">
         <!-- Dropdown Trigger -->
-        <li><a class ="dropdown-trigger" href = "#!" data-target="dropdown1">Welcome, "username here"<i class = "material-icons right">arrow_drop_down</i></a></li>
+        <li><a class ="dropdown-trigger" href = "#!" data-target="dropdown1" data-activates="dropdown-trigger">Welcome, "username here"<i class = "material-icons right">arrow_drop_down</i></a></li>
       </ul>
     </div>
   </nav>
@@ -78,7 +80,7 @@
 <!-- </div> for background img -->
 <!-- footer -->
 <div class="container nav-wrapper">
-<footer class="page-footer blue-grey lighten-4">
+<footer class="page-footer light-blue lighten-4">
   
     <div class="row">
       <div class="col s12 m6 l3"></div>
@@ -91,10 +93,9 @@
       </div>
     
     <div class="col s12 m6 l3">
-      <h5 class="white-text">More about our Products</h5>
+      <h5 class="white-text">About the Developers</h5>
       <ul>
-        <li><a class="grey-text text-lighten-3" href="#!">Home</a></li>
-        <li><a class="grey-text text-lighten-3" href="#!">Shopping Cart</a></li>
+        <li><a class="grey-text text-lighten-3" href="#!">Portfolio</a></li>
       </ul>
     </div>
   </div>
