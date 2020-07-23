@@ -6,23 +6,24 @@
   <link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css">
+  <link rel="stylesheet" href="public\css\style.css">
 </head>
 <body>
-<!-- nav bar -->
+<!-- nav bar dropdown-->
 <div class="container">
-  <ul id = "dropdown1" class = "dropdown-content right">
-    <li class="blue-grey lighten-4 text-deep-purple-darken-4"><a href = "#!">Home</a></li>
+  <ul id = "dropdown1" class = "dropdown-content right hide-on-med-and-down">
+    <li class="blue-grey lighten-4"><a href = "#!">Home</a></li>
     <li class = "divider"></li>
     <li class="blue-grey darken-1"><a href = "#!">Shop</a></li>
     <li class = "divider"></li>
     <li class="light-blue"><a href = "#!">Go to my Shopping Cart</a></li>
  </ul>
-  <nav>
-     <!-- searchbar -->
-    <div class = "nav-wrapper light-blue darken-3">
-         
+  <!-- navbar -->
+ <nav>
+   <div class = "nav-wrapper light-blue darken-3">
   <div class="left col s4 m4 l4">
     <div class="row"></div>
+   <!-- searchbar -->  
     <form id="nav-mobile">
       <div class="input-field">
         <input class="light-blue darken-3" id="search" type="search" required>
@@ -36,7 +37,7 @@
       </div>
       <ul id="nav-mobile" class="right">
         <!-- Dropdown Trigger -->
-        <li><a class ="dropdown-trigger" href = "#!" data-target="dropdown1" data-activates="dropdown-trigger">Welcome, "username here"<i class = "material-icons right">arrow_drop_down</i></a></li>
+        <li><a class ="dropdown-trigger button-collapse" href = "#!" data-target="dropdown1" data-activates="dropdown-trigger button-collapse">Welcome, "username here"<i class = "material-icons right button-collapse">arrow_drop_down</i></a></li>
       </ul>
     </div>
   </nav>
@@ -113,7 +114,7 @@
 <script type="text/javascript">
           $( document ).ready(function() {
          $(".dropdown-trigger").dropdown();
-         
+        //  $(".button-collapse").sideNav();
         $('.carousel').carousel();
          });
       
