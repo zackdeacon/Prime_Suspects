@@ -9,20 +9,11 @@ var db = require("../models/");
 router.get("/", function (req, res) {
 
   // res.send("hello home page");
-<<<<<<< HEAD
 //  let items25 = []; 
 const { Op } = require("sequelize");
     db.item.findAll({
       where: {id: {
         [Op.lte]: 24
-=======
-  //  let items25 = []; 
-  const { Op } = require("sequelize");
-  db.item.findAll({
-    where: {
-      id: {
-        [Op.lte]: 10
->>>>>>> dev
       }
     }
   })
@@ -30,13 +21,8 @@ const { Op } = require("sequelize");
       // res.json(dbitems);
       const dbitemssJson = dbitems.map(items => items.toJSON());
       var hbsObject = { items: dbitemssJson };
-<<<<<<< HEAD
       return res.render("index", hbsObject);
     
-=======
-      return res.render("cart", hbsObject);
-
->>>>>>> dev
     }).catch(err => res.status(500).json(err));
 
 });
