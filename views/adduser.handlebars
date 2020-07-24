@@ -1,32 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<meta charset="UTF-8">
-	<title>CMS - Express</title>
-	<!-- Latest compiled and minified CSS & JS -->
-	<link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/flatly/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
-	<script src="https://code.jquery.com/jquery.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-</head>
-
-<body>
 	<div class="container hidden">
 		<div class="row">
 			<div class="col-md-6 offset-md-3">
-				<form id="cms">
+				<form id="addUser">
 					<div class="form-group">
 						<label for="userName">Username:</label>
 						<input placeholder="johndoe123" type="text" class="form-control" id="userName">
+						<br/>
+						
+						<label for="userPasword">Password:</label>
+						<input placeholder="Use something secure." type="password" class="form-control" id="userPassword">
 						<br/>
 
 						<label for="userEmail">Email:</label>
 						<input placeholder="john_doe123@example.com" type="text" class="form-control" id="userEmail">
 						<br/>
 
-						<label for="userPasword">Password:</label>
-						<input placeholder="Use something secure." type="text" class="form-control" id="userPassword">
+						<label for="userFullName">Full Name:</label>
+						<input placeholder="John B. Doe" type="text" class="form-control" id="userFullName">
+						<br/>
+
+						<label for="userPhoneNumber">Phone Number:</label>
+						<input placeholder="900-000-0000" type="text" class="form-control" id="userPhoneNumber">
 						<br/>
 
 						<label for="userStreetAddress">Street Address:</label>
@@ -38,23 +32,18 @@
 						<br/>
 
 						<label for="userState">State:</label>
-						<input placeholder="New York" type="text" class="form-control" id="userState">
+						<input placeholder="NY" type="text" class="form-control" id="userState">
 						<br/>
 
 						<label for="userZip">Zip:</label>
 						<input placeholder="12345" type="text" class="form-control" id="userZip">
 						<br>
 						</div>
-						<br/>
-						<button type="submit" class="btn btn-success submit">Submit</button>
+						<button type="submit" class="btn blue submit">Submit</button>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
 	<!-- Custom Script -->
-	<script src="js/cms.js" type="text/javascript"></script>
-
-</body>
-
-</html>
+	<script src="/js/user.js" type="text/javascript"></script>
