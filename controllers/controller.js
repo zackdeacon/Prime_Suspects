@@ -9,12 +9,11 @@ var db = require("../models/");
 router.get("/", function (req, res) {
 
   // res.send("hello home page");
-  //  let items25 = []; 
-  const { Op } = require("sequelize");
-  db.item.findAll({
-    where: {
-      id: {
-        [Op.lte]: 10
+//  let items25 = []; 
+const { Op } = require("sequelize");
+    db.item.findAll({
+      where: {id: {
+        [Op.lte]: 24
       }
     }
   })
@@ -22,8 +21,8 @@ router.get("/", function (req, res) {
       // res.json(dbitems);
       const dbitemssJson = dbitems.map(items => items.toJSON());
       var hbsObject = { items: dbitemssJson };
-      return res.render("cart", hbsObject);
-
+      return res.render("index", hbsObject);
+    
     }).catch(err => res.status(500).json(err));
 
 });

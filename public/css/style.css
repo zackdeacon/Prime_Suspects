@@ -9,6 +9,21 @@
   }
 
 .imgSize {
-height: 75%;
-width: 75%;
+height: 100%;
+width: 100%;
+}
+
+.card {
+  margin: 10px;
+}
+
+/* .col {
+  border: 1px solid black;
+} */
+
+.extraCol {
+  /* border: 1px solid orange; */
+  background-color: #bbdefb;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
