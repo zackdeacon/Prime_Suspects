@@ -24,7 +24,7 @@
     </form>
   </div>
       <div class="brand-logo center">
-      <img class="z-depth-5" src="public\images\Logo2.jpeg" >
+      <img class="z-depth-5 imgSize" src="/images/Logo2.jpeg" >
       </div>
       <ul id="nav-mobile" class="right">
         <!-- Dropdown Trigger -->
@@ -36,6 +36,7 @@
 
 <!-- div for background img -->
 <!-- <div class="nav-wrapper" style="background-image: url('https://icolorpalette.com/download/imagepost/cloud-2456926_1280.jpg'); background-repeat: no-repeat;"> -->
+<div class="container">
 
 <!-- carousel -->
 <div class="carousel">
@@ -62,12 +63,27 @@
 
 <!-- responsive grid for body content as needed -->
 <div class="row">
-  <div class="col s12 m6 l3"></div>
-  <div class="col s12 m6 l3"><p></p></div>
-  <div class="col s12 m6 l3"><p></p></div>
-  <div class="col s12 m6 l3"><p></p></div>
+         {{#each items}}
+  <div class="col s12 m6 l3">
+   <!-- shopping cart cards -->
+  <!-- Card Content -->
+      <div class="card small">
+        <div class="card-content">
+          <p class="blue-text">Name:{{this.name}}</p>
+            <!-- Card Image -->
+        <div class="card-image">
+          <img src="public\images\Logo1.jpeg" alt="Image">
+        </div>
+      </div>
+          <p class="blue-text">Price:{{this.prices_amountMax}}</p>
+          <p class="blue-text">Brand:{{this.brand}}</p>
+        </div>
+  </div>
+  {{/each}}
+
 </div>
 
+</div>
 
 <!-- </div> for background img -->
 <!-- footer -->

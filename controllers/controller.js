@@ -13,7 +13,7 @@ router.get("/", function(req, res) {
 const { Op } = require("sequelize");
     db.item.findAll({
       where: {id: {
-        [Op.lte]: 10
+        [Op.lte]: 24
       }
     } 
     })
@@ -21,7 +21,7 @@ const { Op } = require("sequelize");
       // res.json(dbitems);
       const dbitemssJson = dbitems.map(items=>items.toJSON());
       var hbsObject = { items: dbitemssJson };
-      return res.render("cart", hbsObject);
+      return res.render("index", hbsObject);
     
     }).catch(err => res.status(500).json(err));
 
