@@ -6,23 +6,24 @@ var router = express.Router();
 var db = require("../models/");
 
 // route to find all items and then to loop over for 25 with pic price name and brand
-router.get("/", function(req, res) {
-  
+router.get("/", function (req, res) {
+
   // res.send("hello home page");
-//  let items25 = []; 
-const { Op } = require("sequelize");
-    db.item.findAll({
-      where: {id: {
+  //  let items25 = []; 
+  const { Op } = require("sequelize");
+  db.item.findAll({
+    where: {
+      id: {
         [Op.lte]: 10
       }
-    } 
-    })
-    .then(function(dbitems) {
+    }
+  })
+    .then(function (dbitems) {
       // res.json(dbitems);
-      const dbitemssJson = dbitems.map(items=>items.toJSON());
+      const dbitemssJson = dbitems.map(items => items.toJSON());
       var hbsObject = { items: dbitemssJson };
       return res.render("cart", hbsObject);
-    
+
     }).catch(err => res.status(500).json(err));
 
 });
@@ -101,31 +102,40 @@ router.delete("/api/items/:id", function (req, res) {
   });
 });
 
+
+// SIGNUP ROUTES
+// ===============================================================
+router.get('/signup', (req, res) => {
+  res.render('adduser')
+})
+
+router.post('/signup', (req, res) => {
+  db.user.create(req.body)
+  .then(userData => {
+    res.json(userData.id)
+  }).catch(err => {
+    res.status(500).end();
+  })
+})
+
 // API ROUTES 
 // ===============================================================
-router.get("/api/users/:id", function(req, res) {
+router.get("/api/users/:id", function (req, res) {
   db.user.findOne({
     where: {
       id: req.params.id
     },
-  }).then(function(result) {
+  }).then(function (result) {
     res.json(result);
   }).catch(err => res.status(500).json(err));
 })
 
-router.get("/api/users/", function(req, res) {
-
+router.get("/api/users/", function (req, res) {
   db.user.findAll({
-  }).then(function(dbPost) {
+  }).then(function (dbPost) {
     res.json(dbPost);
   }).catch(err => res.status(500).json(err));
 })
-
-router.post("/api/users", function (req, res) {
-  db.user.create(req.body).then(function (result) {
-    res.json(result);
-  });
-});
 
 router.put("/api/users", function (req, res) {
   db.user.update(
