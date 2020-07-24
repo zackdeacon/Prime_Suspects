@@ -9,13 +9,13 @@
   <link rel="stylesheet" href="public\css\style.css">
 </head>
 <body>
-  <!-- container for navbar -->
+<!-- container for navbar -->
 <div class="container">
   <!-- dropdown menu for navbar --> 
-   <ul id = "dropdown1" class = "dropdown-content">
-     <li class=" blue-grey lighten-4"><a href = "index.html">Home</a></li>
+   <ul id = "dropdown1" class = "dropdown-content right">
+     <li class="blue-grey lighten-4"><a href = "index.html">Home</a></li>
      <li class = "divider"></li>
-     <li class="blue-grey darken-1"><a href = "#!">Shop</a></li>
+     <li class="blue-grey darken-1"><a href = "settings.html">Settings</a></li>
      <li class = "divider"></li>
      <li class="light-blue"><a href = "cart.html">Go to my Shopping Cart<i class="material-icons">add_shopping_cart</i></a></li>
   </ul>
@@ -45,69 +45,63 @@
     </div>
   </nav>
 </div>
-
-
-    
-<!-- card for shopping Cart -->
-<div class="container">
-<div class = "col s12 m3">
+<br>
+<!-- settings form page -->
+<div class="container blue-grey lighten-4">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <form id="addUser">
+          <div class="form-group">
+            <label for="userName">Username:</label>
+            <input placeholder="johndoe123" type="text" class="form-control" id="userName">
+            <br/>
+            
+            <label for="userPasword">Password:</label>
+            <input placeholder="Use something secure." type="password" class="form-control" id="userPassword">
+            <br/>
   
-  <div class = "card large card-content light-blue lighten-4">
-  <h1 class="center">Shopping Cart<i class="large material-icons">add_shopping_cart</i></h1>
-  <h6 class="text-flow">Your Items:</h6>
-      <div class="row">
-        
-  <div class="col s12 m7">
-   <!-- shopping cart cards -->
-  <!-- Card Content -->
-    <div class="col s4 m4 l4">
-      <div class="card small">
-        <div class="card-content">
-          <p class="blue-text">Name:</p>
-            <!-- Card Image -->
-        <div class="card-image">
-          <img src="public\images\Logo1.jpeg" alt="Image">
-        </div>
-      </div>
-          <p class="blue-text">Price:</p>
-          <p class="blue-text">Brand:</p>
-          <div class="center">
-            <a class="btn-flat waves-effect waves-light deep-purple lighten-2">Add to Cart</a>
+            <label for="userEmail">Email:</label>
+            <input placeholder="john_doe123@example.com" type="text" class="form-control" id="userEmail">
+            <br/>
+  
+            <label for="userFullName">Full Name:</label>
+            <input placeholder="John B. Doe" type="text" class="form-control" id="userFullName">
+            <br/>
+  
+            <label for="userPhoneNumber">Phone Number:</label>
+            <input placeholder="900-000-0000" type="text" class="form-control" id="userPhoneNumber">
+            <br/>
+  
+            <label for="userStreetAddress">Street Address:</label>
+            <input placeholder="123 Main St." type="text" class="form-control" id="userStreetAddress">
+            <br/>
+  
+            <label for="userCity">City:</label>
+            <input placeholder="New York" type="text" class="form-control" id="userCity">
+            <br/>
+  
+            <label for="userState">State:</label>
+            <input placeholder="NY" type="text" class="form-control" id="userState">
+            <br/>
+  
+            <label for="userZip">Zip:</label>
+            <input placeholder="12345" type="text" class="form-control" id="userZip">
+            <br>
             </div>
-        </div>
-    </div>
-  <!-- Card Content -->
-    <div class="col s4 m4 l4">
-      <div class="card small">
-        <div class="card-content">
-          <p class="blue-text">Name:</p>
-            <!-- Card Image -->
-        <div class="card-image"> 
-          <img src="public\images\Logo1.jpeg" alt="Image">
-        </div>
-      </div>
-          <p class="blue-text">Price:</p>
-          <p class="blue-text">Brand:</p>
-          <div class="center">
-          <a class="btn-flat waves-effect waves-light deep-purple lighten-2">Add to Cart</a>
+            <button type="submit" class="btn purple lighten-2 submit">Submit</button>
           </div>
-        </div>
+        </form>
+      </div>
     </div>
   </div>
 
 
 
-<!-- gird layout -->
-        <div class="col s12 m6 l3"><p></p></div>
-        <div class="col s12 m6 l3"><p></p></div>
-        <div class="col s12 m6 l3"><p></p></div>
-      </div>
-     </span>
-  </div>
-</div>
-</div>
 
-  <!-- footer -->
+
+
+
+<!-- footer -->
 <div class="container nav-wrapper">
     <footer class="page-footer cyan lighten-2">
       
@@ -121,13 +115,13 @@
             </ul>
           </div>
         
-          <div class="col s12 m6 l3">
-            <h5 class="white-text">About the Developers</h5>
-            <ul>
-              <li><a class="grey-text text-lighten-3" href="#!">Portfolio</a></li>
-            </ul>
-          </div>
+        <div class="col s12 m6 l3">
+          <h5 class="white-text">About the Developers</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="#!">Portfolio</a></li>
+          </ul>
         </div>
+      </div>
     
       <div class="footer-copyright">
         <div class="container center">
@@ -142,7 +136,7 @@
     <script type="text/javascript">
               $( document ).ready(function() {
              $(".dropdown-trigger").dropdown();
-             
+            //  $(".button-collapse").sideNav();
             $('.carousel').carousel();
              });
           

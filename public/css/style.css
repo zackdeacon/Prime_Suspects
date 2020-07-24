@@ -14,3 +14,12 @@
 height: 75%;
 width: 75%;
 }
+
+label {
+  color: #9575cd;
+
+}
+
+input {
+  color: #9575cd;
+}
