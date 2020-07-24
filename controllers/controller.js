@@ -6,17 +6,17 @@ var router = express.Router();
 var db = require("../models/");
 
 // route to find all items 
-// router.get("/", function (req, res) {
+router.get("/", function (req, res) {
 
-//   // res.send("hello home page");
+  // res.send("hello home page");
 
-//   db.item.findAll()
+  db.item.findAll()
 
-//     .then(function (dbitems) {
-//       res.json(dbitems);
-//     }).catch(err => res.status(500).json(err));
+    .then(function (dbitems) {
+      res.json(dbitems);
+    }).catch(err => res.status(500).json(err));
 
-// });
+});
 
 //creating user profiles 
 router.post("/item/create", function (req, res) {
@@ -94,14 +94,32 @@ router.delete("/api/items/:id", function (req, res) {
 
 // API ROUTES 
 // ===============================================================
+router.get("/api/users/:id", function(req, res) {
+
+  db.user.findOne({
+    where: {
+      id: req.params.id
+    },
+  }).then(function(result) {
+    res.sendFile("adduser.html");
+  }).catch(err => res.status(500).json(err));
+})
+
+router.get("/api/users/", function(req, res) {
+
+  db.user.findAll({
+  }).then(function(dbPost) {
+    res.json(dbPost);
+  }).catch(err => res.status(500).json(err));
+})
+
 router.post("/api/users", function (req, res) {
   db.user.create(req.body).then(function (result) {
     res.json(result);
   });
 });
 
-
-router.put("/api/posts", function (req, res) {
+router.put("/api/users", function (req, res) {
   db.user.update(
     req.body,
     {
@@ -110,18 +128,9 @@ router.put("/api/posts", function (req, res) {
       }
     }).then(function (result) {
       res.json(result);
-    })
+    }).catch(err => res.status(500).json(err));
 })
 
-router.get("/", function (req, res) {
-
-  res.sendFile("./cms.html");
-
-  // db.item.findAll()
-
-  //   .then(function (dbitems) {
-  //     res.json(dbitems);
-  //   }).catch(err => res.status(500).json(err));
-
-});
+// EXPORT
+// ===============================================================
 module.exports = router;

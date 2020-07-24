@@ -85,59 +85,27 @@ $(document).ready(function () {
   // Submits a new post and brings user to blog page upon completion
   function submitUser(newUser) {
     $.post("/api/users", newUser, function () {
-      window.location.href = "/"; // COULD BE SUCCESS PAGE?
+      window.location.href = "/";
     });
   }
 
   // Gets user data for the current user if we're editing
-  // function getUserData(id) {
-  //   var queryUrl = 'api/users/' + id;
-  // }
+  function getUserData(id) {
+    var queryUrl = 'api/users/' + id;
 
-  $.get(queryUrl, function (data) {
-    if (data) {
-      console.log(data.AuthorId || data.id);
-      // If this post exists, prefill our cms forms with its data
-      titleInput.val(data.title);
-      bodyInput.val(data.body);
-      authorId = data.AuthorId || data.id;
-      // If we have a post with this id, set a flag for us to know to update the post
-      // when we hit submit
-      updating = true;
-    }
-  });
-
-  // A function to get Authors and then render our list of Authors
-  // function getAuthors() {
-  //   $.get("/api/authors", renderAuthorList);
-  // }
-
-  // Function to either render a list of authors, or if there are none, direct the user to the page
-  // to create an author first
-
-  // function renderAuthorList(data) {
-  //   if (!data.length) {
-  //     window.location.href = "/authors";
-  //   }
-  //   $(".hidden").removeClass("hidden");
-  //   var rowsToAdd = [];
-  //   for (var i = 0; i < data.length; i++) {
-  //     rowsToAdd.push(createAuthorRow(data[i]));
-  //   }
-  //   authorSelect.empty();
-  //   console.log(rowsToAdd);
-  //   console.log(authorSelect);
-  //   authorSelect.append(rowsToAdd);
-  //   authorSelect.val(authorId);
-  // }
-
-  // Creates the author options in the dropdown
-  // function createAuthorRow(author) {
-  //   var listOption = $("<option>");
-  //   listOption.attr("value", author.id);
-  //   listOption.text(author.name);
-  //   return listOption;
-  // }
+    $.get(queryUrl, function (data) {
+      if (data) {
+        console.log(data.AuthorId || data.id);
+        // If this post exists, prefill our cms forms with its data
+        titleInput.val(data.title);
+        bodyInput.val(data.body);
+        authorId = data.AuthorId || data.id;
+        // If we have a post with this id, set a flag for us to know to update the post
+        // when we hit submit
+        updating = true;
+      }
+    });
+  }
 
   // Update a given post, bring user to the blog page when done
   function updateUser(user) {
