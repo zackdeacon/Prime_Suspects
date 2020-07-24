@@ -1,6 +1,6 @@
 
 var express = require("express");
-
+var Sequelize = require('sequelize');
 var router = express.Router();
 
 var db = require("../models/");
@@ -12,10 +12,8 @@ router.get("/", function (req, res) {
 //  let items25 = []; 
 const { Op } = require("sequelize");
     db.item.findAll({
-      where: {id: {
-        [Op.lte]: 24
-      }
-    }
+      order:  Sequelize.literal('rand()'),
+      limit: 24
   })
     .then(function (dbitems) {
       // res.json(dbitems);
