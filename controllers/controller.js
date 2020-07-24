@@ -101,7 +101,7 @@ router.get("/api/users/:id", function(req, res) {
       id: req.params.id
     },
   }).then(function(result) {
-    res.sendFile("adduser.html");
+    res.json(result);
   }).catch(err => res.status(500).json(err));
 })
 
