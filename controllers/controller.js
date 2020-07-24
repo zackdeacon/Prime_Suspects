@@ -95,7 +95,6 @@ router.delete("/api/items/:id", function (req, res) {
 // API ROUTES 
 // ===============================================================
 router.get("/api/users/:id", function(req, res) {
-
   db.user.findOne({
     where: {
       id: req.params.id
