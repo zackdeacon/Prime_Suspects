@@ -5,15 +5,24 @@ var router = express.Router();
 
 var db = require("../models/");
 
-// route to find all items 
+// route to find all items and then to loop over for 25 with pic price name and brand
 router.get("/", function(req, res) {
   
   // res.send("hello home page");
-
-    db.item.findAll()
-
+//  let items25 = []; 
+const { Op } = require("sequelize");
+    db.item.findAll({
+      where: {id: {
+        [Op.lte]: 10
+      }
+    } 
+    })
     .then(function(dbitems) {
-      res.json(dbitems);
+      // res.json(dbitems);
+      const dbitemssJson = dbitems.map(items=>items.toJSON());
+      var hbsObject = { items: dbitemssJson };
+      return res.render("cart", hbsObject);
+    
     }).catch(err => res.status(500).json(err));
 
 });
