@@ -7,21 +7,21 @@ $(document).ready(function () {
   const userCityInput = $("#userCity");
   const userStateInput = $("#userState");
   const userZipInput = $("#userZip");
-  const userFullName = $("#userFullName");
+  const userFullNameInput = $("#userFullName");
   const userPhoneNumber = $("#userPhoneNumber");
-  const cmsForm = $("#cms");
+  const userForm = $("#userform");
   // Adding an event listener for when the form is submitted
-  $(cmsForm).on("submit", handleFormSubmit);
+  $(userForm).on("submit", handleFormSubmit);
 
   // Gets the part of the url that comes after the "?" (which we have if we're updating a post)
-  var url = window.location.search;
-  var userId;
+  const url = window.location.search;
+  let userId;
   userId = url.split("=")[1];
   // Sets a flag for whether or not we're updating a user to be false initially
-  var updating = false;
+  const updating = false;
 
   // Gets the users
-  getUsers();
+  getUserData(userId);
 
   // A function for handling what happens when the form to create a new post is submitted
   function handleFormSubmit(event) {
@@ -35,7 +35,7 @@ $(document).ready(function () {
       !userCityInput.val().trim() ||
       !userStateInput.val().trim() ||
       !userZipInput.val().trim() ||
-      !userFullName.val().trim() ||
+      !userFullNameInput.val().trim() ||
       !userPhoneNumber.val().trim()) {
       return;
     }
@@ -51,7 +51,7 @@ $(document).ready(function () {
       password: userPasswordInput
         .val()
         .trim(),
-      name: userFullName
+      name: userFullNameInput
         .val()
         .trim(),
       address: userStreetAddressInput
@@ -94,12 +94,19 @@ $(document).ready(function () {
     var queryUrl = 'api/users/' + id;
 
     $.get(queryUrl, function (data) {
-      if (data) {
-        console.log(data.AuthorId || data.id);
+      if (data.id) {
+        console.log(data.id);
         // If this post exists, prefill our cms forms with its data
-        titleInput.val(data.title);
-        bodyInput.val(data.body);
-        authorId = data.AuthorId || data.id;
+        userEmailInput.val(data.email);
+        userNameInput.val(data.username);
+        userPasswordInput.val(data.password);
+        userStreetAddressInput.val(data.address);
+        userCityInput.val(data.city);
+        userStateInput.val(data.state);
+        userZipInput.val(data.zip);
+        userFullNameInput.val(data.name);
+        userPhoneNumber.val(data.phoneNumber);
+
         // If we have a post with this id, set a flag for us to know to update the post
         // when we hit submit
         updating = true;
@@ -115,7 +122,7 @@ $(document).ready(function () {
       data: user
     })
       .then(function () {
-        window.location.href = "/blog";
+        window.location.href = "/";
       });
   }
 });
