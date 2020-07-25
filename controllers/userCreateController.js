@@ -2,7 +2,7 @@ const router = require('express').Router();
 const db = require('../models');
 const bcrypt = require('bcrypt');
 
-router.post('signup', (req,res)=> {
+router.post('/signup', (req,res)=> {
     db.user.create({
         name:req.body.name,
         email:req.body.email,
@@ -19,9 +19,9 @@ router.post('signup', (req,res)=> {
     })
 })
 
-router.post('login',(req,res)=>{
+router.post('/login',(req,res)=>{
     db.user.findOne({
-        shwere:{
+        where:{
             email:req.body.email
         }
     }).then(user=>{
