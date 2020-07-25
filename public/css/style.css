@@ -24,34 +24,34 @@ input {
 
 
 
-/* .card {
-  margin: 10px;
+ .zackCard {
+  /* margin: 5px; */
 }
 
-/* .col {
-  border: 1px solid black;
-} */
+ .col {
+  /* border: 1px solid black; */
+} 
 
-/* .extraCol { */
-  /* border: 1px solid orange; */
-  /* background-color: #bbdefb;
+ .extraCol { 
+   /* border: 1px solid orange;  */
+   background-color: #bbdefb;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-.card-image {
+.zackImage {
   
-  height: 200px; */
-    /* border: 1px solid orange; */
+  height: 200px; 
+  /* border: 1px solid orange;  */
 
-/* } */
-/* 
-.card-content {
+} 
+
+.zackContent {
   
   height: 200px;
     /* border: 1px solid purple; */
 
-/* } */ 
+ } 
 
 .imageSizing {
   height: 200px;
