@@ -9,10 +9,22 @@
   <link rel="stylesheet" href="public\css\style.css">
 </head>
 <body>
-<!-- container for navbar -->
-<div class="container">
-  <!-- dropdown menu for navbar --> 
-   <ul id = "dropdown1" class = "dropdown-content right">
+
+<!-- side nav bar for mobile-->
+
+
+
+<ul class="sidenav left" id="mobile-nav">
+  <li class="blue-grey lighten-4"><a href = "index.html">Home</a></li>
+  <li class = "divider"></li>
+  <li class="blue-grey darken-1"><a href = "settings.html">Settings</a></li>
+  <li class = "divider"></li>
+  <li class="light-blue"><a href = "cart.html">Go to my Shopping Cart<i class="material-icons">add_shopping_cart</i></a></li>
+</ul>
+
+
+  <!-- dropdown menu for navbar -->
+   <ul id = "dropdown1" class = "dropdown-content right hide-on-med-and-down">
      <li class="blue-grey lighten-4"><a href = "index.html">Home</a></li>
      <li class = "divider"></li>
      <li class="blue-grey darken-1"><a href = "settings.html">Settings</a></li>
@@ -22,28 +34,32 @@
 
 
   <!-- navbar -->
- <nav class="nav">
+ <nav>
    <div class = "nav-wrapper cyan lighten-2">
   <div class="left col s4 m4 l4">
     <div class="row"></div>
-   <!-- searchbar -->  
-    <form id="nav-mobile">
-      <div class="input-field">
+    <!-- hamburger menu -->
+    <a href="#" class="sidenav-trigger" data-target="mobile-nav">
+			<i class="material-icons">menu</i>
+		</a>
+   <!-- searchbar -->
+    <!-- <form id="nav-mobile">
+      <div class="input-field" data-activates="mobile-demo">
         <input class="cyan lighten-2" id="search" type="search" required>
-        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+        <label class="label-icon" for="search"><i class="material-icons hide-on-med-and-down">search</i></label>
         <i class="material-icons">close</i>
       </div>
-    </form>
+    </form> -->
   </div>
       <div class="brand-logo center">
-      <img class="z-depth-5" src="public\images\Logo2.jpeg" >
+      <img class="responsive-img z-depth-5" src="public\images\Logo2.jpeg" >
       </div>
       <ul id="nav-mobile" class="right">
         <!-- Dropdown Trigger -->
         <li><a class ="dropdown-trigger button-collapse" href = "#!" data-target="dropdown1" data-activates="dropdown-trigger button-collapse">Welcome, "username here"<i class = "material-icons right button-collapse">arrow_drop_down</i></a></li>
       </ul>
     </div>
-  </nav>
+  
 </div>
 <br>
 <!-- settings form page -->
@@ -136,7 +152,7 @@
     <script type="text/javascript">
               $( document ).ready(function() {
              $(".dropdown-trigger").dropdown();
-            //  $(".button-collapse").sideNav();
+             $('.sidenav').sidenav();
             $('.carousel').carousel();
              });
           
