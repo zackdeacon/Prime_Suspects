@@ -7,7 +7,7 @@ $("#loginForm").submit(function(event){
     }
     console.log(userObj);
     $.ajax({
-        url:"/auth/login",
+        url:"/login",
         method:"POST",
         data: userObj
     }).done(function(data){
