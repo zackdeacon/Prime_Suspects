@@ -24,6 +24,7 @@ input {
 
 
 
+<<<<<<< HEAD
 .card {
   margin: 10px;
 }
@@ -35,10 +36,24 @@ input {
 .extraCol {
   border: 1px solid orange;
   background-color: #bbdefb;
+=======
+ .zackCard {
+  /* margin: 5px; */
+}
+
+ .col {
+  /* border: 1px solid black; */
+} 
+
+ .extraCol { 
+   /* border: 1px solid orange;  */
+   background-color: #bbdefb;
+>>>>>>> dev
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
+<<<<<<< HEAD
 .card-image {
   height: 200px;
   border: 1px solid orange;
@@ -49,6 +64,21 @@ input {
   height: 200px;
     border: 1px solid purple;
 }
+=======
+.zackImage {
+  
+  height: 200px; 
+  /* border: 1px solid orange;  */
+
+} 
+
+.zackContent {
+  
+  height: 200px;
+    /* border: 1px solid purple; */
+
+ } 
+>>>>>>> dev
 
 .imageSizing {
   height: 200px;
