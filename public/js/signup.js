@@ -70,7 +70,7 @@ $(document).ready(function () {
 
   function submitUser(newUserObj) {
     $.ajax({
-      url:"/auth/signup",
+      url:"/signup",
       method:"POST",
       data: newUserObj
     }).done(function(data){

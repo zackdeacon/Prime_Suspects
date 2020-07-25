@@ -106,6 +106,10 @@ router.get('/signup', (req, res) => {
   res.render('adduser')
 })
 
+router.get('/login', (req, res) => {
+  res.render('login')
+})
+
 router.post('/signup', (req, res) => {
   db.user.create(req.body)
   .then(userData => {
@@ -134,7 +138,7 @@ router.get("/api/users/", function (req, res) {
   }).catch(err => res.status(500).json(err));
 })
 
-router.put("/api/users", function (req, res) {
+router.put("/api/users/", function (req, res) {
   db.user.update(
     req.body,
     {
