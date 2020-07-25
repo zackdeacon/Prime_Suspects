@@ -1,6 +1,4 @@
-.nav {
-    min-height: 110px;
-}
+
 
 .dropdown-content li > a, .dropdown-content li > span {
     font-size: 16px;
@@ -22,4 +20,47 @@ label {
 
 input {
   color: #9575cd;
+}
+
+/* height: 100%;
+width: 100%;
+} */
+
+.card {
+  margin: 10px;
+}
+
+/* .col {
+  border: 1px solid black;
+} */
+
+.extraCol {
+  /* border: 1px solid orange; */
+  background-color: #bbdefb;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.card-image {
+  
+  height: 200px;
+    /* border: 1px solid orange; */
+
+}
+
+.card-content {
+  
+  height: 200px;
+    /* border: 1px solid purple; */
+
+}
+
+.imageSizing {
+  height: 200px;
+  width: 200px;
+}
+
+.carousel-image {
+  height: 300px;
+  width: 400px;
 }

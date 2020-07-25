@@ -1,134 +1,31 @@
-  <!-- container for navbar -->
-<div class="container">
-  <!-- dropdown menu for navbar --> 
-   <ul id = "dropdown1" class = "dropdown-content">
-     <li class=" blue-grey lighten-4"><a href = "index.html">Home</a></li>
-     <li class = "divider"></li>
-     <li class="blue-grey darken-1"><a href = "#!">Shop</a></li>
-     <li class = "divider"></li>
-     <li class="light-blue"><a href = "cart.html">Go to my Shopping Cart<i class="material-icons">add_shopping_cart</i></a></li>
-  </ul>
 
 
-  <!-- navbar -->
- <nav class="nav">
-   <div class = "nav-wrapper cyan lighten-2">
-  <div class="left col s4 m4 l4">
-    <div class="row"></div>
-   <!-- searchbar -->  
-    <form id="nav-mobile">
-      <div class="input-field">
-        <input class="cyan lighten-2" id="search" type="search" required>
-        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-        <i class="material-icons">close</i>
-      </div>
-    </form>
-  </div>
-      <div class="brand-logo center">
-      <img class="z-depth-5 imgSize" src="/images/Logo2.jpeg" >
-      </div>
-      <ul id="nav-mobile" class="right">
-        <!-- Dropdown Trigger -->
-        <li><a class ="dropdown-trigger button-collapse" href = "#!" data-target="dropdown1" data-activates="dropdown-trigger button-collapse">Welcome, "username here"<i class = "material-icons right button-collapse">arrow_drop_down</i></a></li>
-      </ul>
-    </div>
-  </nav>
-</div>
-
-
-    
 <!-- card for shopping Cart -->
-<div class="container">
-<div class = "col s12 m3">
-  
-  <div class = "card large card-content light-blue lighten-4">
-  <h1 class="center">Shopping Cart<i class="large material-icons">add_shopping_cart</i></h1>
-  <h6 class="text-flow">Your Items:</h6>
-      <div class="row">
-         {{#each items}}
-  <div class="col s12 m7">
-   <!-- shopping cart cards -->
-  <!-- Card Content -->
-    <div class="col s4 m4 l4">
-      <div class="card small">
-        <div class="card-content">
-          <p class="blue-text">Name:{{this.name}}</p>
-            <!-- Card Image -->
-        <div class="card-image">
-          <img src="public\images\Logo1.jpeg" alt="Image">
-        </div>
-      </div>
-          <p class="blue-text">Price:{{this.prices_amountMax}}</p>
-          <p class="blue-text">Brand:{{this.brand}}</p>
-        </div>
-    </div>
-  </div>
-  {{/each}}
-  <!-- Card Content -->
-    {{!-- <div class="col s4 m4 l4">
-      <div class="card small">
-        <div class="card-content">
-          <p class="blue-text">Name:</p>
-            <!-- Card Image -->
-        <div class="card-image"> 
-          <img src="public\images\Logo1.jpeg" alt="Image">
-        </div>
-      </div>
-          <p class="blue-text">Price:</p>
-          <p class="blue-text">Brand:</p>
-        </div>
-    </div>
-  </div> --}}
+<div class="container extraCol">
 
-
-
-<!-- gird layout -->
-        <div class="col s12 m6 l3"><p></p></div>
-        <div class="col s12 m6 l3"><p></p></div>
-        <div class="col s12 m6 l3"><p></p></div>
-      </div>
-     </span>
-  </div>
-</div>
-</div>
-
-  <!-- footer -->
-<div class="container nav-wrapper">
-    <footer class="page-footer cyan lighten-2">
-      
+    {{!-- <div class="card large card-content light-blue lighten-4"> --}}
+        <h1 class="center">Shopping Cart<i class="large material-icons">add_shopping_cart</i></h1>
+        <h6 class="text-flow">Your Items:</h6>
         <div class="row">
-          <div class="col s12 m6 l3"></div>
-          <div class="col s12 m6 l3">
-            <h5 class="white-text">More about our Products</h5>
-            <ul>
-              <li><a class="grey-text text-lighten-3" href="#!">Home</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Shopping Cart</a></li>
-            </ul>
-          </div>
-        
-          <div class="col s12 m6 l3">
-            <h5 class="white-text">About the Developers</h5>
-            <ul>
-              <li><a class="grey-text text-lighten-3" href="#!">Portfolio</a></li>
-            </ul>
-          </div>
+            {{#each items}}
+            <div class="col s12 m6 l3">
+                <!-- shopping cart cards -->
+                <!-- Card Content -->
+                <div class="card small">
+                    <div class="card-content">
+                        <p class="blue-text">Name:{{this.name}}</p>
+                        <!-- Card Image -->
+                        <div class="card-image">
+                            <img src="public\images\Logo1.jpeg" alt="Image">
+                        </div>
+                    </div>
+                    <p class="blue-text">Price:{{this.prices_amountMax}}</p>
+                    <p class="blue-text">Brand:{{this.brand}}</p>
+                </div>
+            </div>
+            {{/each}}
         </div>
-    
-      <div class="footer-copyright">
-        <div class="container center">
-        © 2020 Copyright
-        </div>
-      </div>
-    </footer>
-    </div>
-    <!-- script for initializing materialize -->
-    <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script type="text/javascript">
-              $( document ).ready(function() {
-             $(".dropdown-trigger").dropdown();
-             
-            $('.carousel').carousel();
-             });
-          
-    </script>
+</div>
+
+
+
