@@ -98,6 +98,17 @@ function addItemToCart(title, price, imageSrc) {
     cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quantityChanged)
 }
 
+$(".zackSubmit").on("click", function(){
+let clickedId = $(this).attr("data-id");
+$.ajax({
+    url:"/api/items/",
+    method: "POST",
+    data: {itemId: clickedId}
+}).done(function(data){
+    console.log(data);
+})
+})
+
 function updateCartTotal() {
     const cartItemContainer = $(".cart-items")
 
