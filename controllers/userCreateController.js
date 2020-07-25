@@ -29,12 +29,22 @@ router.post('/login', (req, res) => {
             return res.status(404).send("user doesnt exist")
         } else {
             if (bcrypt.compareSync(req.body.password, user.password)) {
+                db.cart.create({
+                    userId: user.id
+                }).then(function(cart){
                 req.session.user = {
                     id: user.id,
-                    // name:user.name,
-                    email: user.email
+                    name: user.name,
+                    email: user.email,
+                    address: user.address,
+                    city: user.city,
+                    state: user.state,
+                    zip: user.zip,
+                    phoneNumber: user.phoneNumber,  
+                    cartId: cart.id              
                 }
                 res.send("login successful!");
+            })
             } else {
                 res.status(401).send("wrong password")
             }
@@ -49,11 +59,23 @@ router.get("/readsessions", (req, res) => {
 })
 
 router.get('/cartRoute', (req, res) => {
-    if (req.session.user) {
-        res.send(`welcome to your shopping cart ${req.session.user.name}!`)
+    if(!req.session.user){
+        res.redirect('/login')
     } else {
-        res.status(401).send("Please log in first!")
+        db.user.findOne({
+            where:{
+                id:req.session.user.id
+            },
+            include:[{model: db.cart,
+            include:[db.item]}]
+        }).then(userObj=>{
+         const userObjJSON = userObj.toJSON();
+         console.log('-------------')
+         console.log(userObjJSON)
+        //  res.render("cart",userObjJSON)
+})
     }
+
 })
 
 router.get('/logout', (req, res) => {

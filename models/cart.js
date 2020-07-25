@@ -1,9 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
     var cart = sequelize.define("cart", {
-       userId: DataTypes.INTEGER,
-       cartId: DataTypes.INTEGER
-      },{
-          tableName: "cart"
+      
       })
     
     //   cart.sync();
