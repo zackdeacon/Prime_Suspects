@@ -51,20 +51,20 @@
   <div class="col s12 m6 l3">
    <!-- shopping cart cards -->
   <!-- Card Content -->
-      <div class="card">
-        <div class="card-content">
+      <div class="card zackCard">
+        <div class="card-content zackContent">
           <p class="blue-text">{{this.name}}</p>
           </div>
             <!-- Card Image -->
-        <div class="card-image">
+        <div class="card-image zackImage">
           <img src={{this.imageURLs}} class="imageSizing" onerror="if (this.src != 'error.jpg') this.src = '/images/Logo1.jpeg'">
         </div>
         <div class="card-content">
                 <p class="blue-text">Price:${{this.prices_amountMax}}</p>
                 <br>
-          <p class="blue-text">Brand: {{this.brand}}</p>
+          <p class="blue-text">{{this.brand}}</p>
           <br>
-          <button>Add to Cart!</button>
+						<button type="submit" class="btn deep-purple lighten-2 submit">Add to Cart!</button>
           </div>
         </div>
   </div>

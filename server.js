@@ -18,9 +18,20 @@ app.engine("handlebars", exphbs({
 }));
 app.set("view engine", "handlebars");
 
-var routes = require("./controllers/controller.js");
+const userCreateRoutes = require("./controllers/userCreateController.js");
+app.use(userCreateRoutes);
 
-app.use(routes);
+const shoppingRoutes = require("./controllers/shoppingController.js");
+app.use(shoppingRoutes);
+
+const cartRoutes = require("./controllers/cartController.js");
+app.use(cartRoutes);
+
+const userAdjustRoutes = require("./controllers/adjustController.js");
+app.use(userAdjustRoutes);
+
+const stripeRoutes = require("./controllers/stripeController.js");
+app.use(stripeRoutes);
 
 
 var PORT = process.env.PORT || 4349;
