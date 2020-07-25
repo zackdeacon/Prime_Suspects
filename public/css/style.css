@@ -22,11 +22,9 @@ input {
   color: #9575cd;
 }
 
-/* height: 100%;
-width: 100%;
-} */
 
-.card {
+
+/* .card {
   margin: 10px;
 }
 
@@ -34,26 +32,26 @@ width: 100%;
   border: 1px solid black;
 } */
 
-.extraCol {
+/* .extraCol { */
   /* border: 1px solid orange; */
-  background-color: #bbdefb;
+  /* background-color: #bbdefb;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
 .card-image {
   
-  height: 200px;
+  height: 200px; */
     /* border: 1px solid orange; */
 
-}
-
+/* } */
+/* 
 .card-content {
   
   height: 200px;
     /* border: 1px solid purple; */
 
-}
+/* } */ 
 
 .imageSizing {
   height: 200px;
