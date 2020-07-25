@@ -16,11 +16,11 @@
                         <p class="blue-text">Name:{{this.name}}</p>
                         <!-- Card Image -->
                         <div class="card-image">
-                            <img src="public\images\Logo1.jpeg" alt="Image">
+                        <img src={{this.imageURLs}} class="imageSizing" onerror="if (this.src != 'error.jpg') this.src = '/images/Logo1.jpeg'">
                         </div>
                     </div>
-                    <p class="blue-text">Price:{{this.prices_amountMax}}</p>
-                    <p class="blue-text">Brand:{{this.brand}}</p>
+                    <p class="blue-text">Price:${{this.prices_amountMax}}</p>
+                    <p class="blue-text">{{this.brand}}</p>
                 </div>
             </div>
             {{/each}}
