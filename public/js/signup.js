@@ -36,7 +36,7 @@ $(document).ready(function () {
 
     // CONSTRUCTS A NEW USER OBJECT
     // ======================================================================================
-    var newUser = {
+    var newUserObj = {
       email: userEmailInput
         .val()
         .trim(),
@@ -65,12 +65,22 @@ $(document).ready(function () {
         .val()
         .trim(),
     };
-    submitUser(newUser);
+    submitUser(newUserObj);
   }
 
-  function submitUser(newUser) {
-    $.post("/signup/", newUser, function () {
-      window.location.href = "/";
-    });
+  function submitUser(newUserObj) {
+    $.ajax({
+      url:"/signup",
+      method:"POST",
+      data: newUserObj
+    }).done(function(data){
+      console.log('data');
+      alert('sign up worked!')
+      location.href = "/login"
+    }).fail(function(err){
+      console.log(err);
+      alert("something went wrong!")
+      location.reload();
+    })
   }
 });
