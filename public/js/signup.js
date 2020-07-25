@@ -23,7 +23,7 @@ $(document).ready(function () {
     event.preventDefault();
     if (
       !userEmailInput.val().trim() ||
-      !userNameInput.val().trim() ||
+      // !userNameInput.val().trim() ||
       !userPasswordInput.val().trim() ||
       !userStreetAddressInput.val().trim() ||
       !userCityInput.val().trim() ||
@@ -40,9 +40,9 @@ $(document).ready(function () {
       email: userEmailInput
         .val()
         .trim(),
-      username: userNameInput
-        .val()
-        .trim(),
+      // username: userNameInput
+      //   .val()
+      //   .trim(),
       password: userPasswordInput
         .val()
         .trim(),
@@ -75,11 +75,11 @@ $(document).ready(function () {
       data: newUserObj
     }).done(function(data){
       console.log('data');
-      alert('sign up worked!')
+      // alert('sign up worked!')
       location.href = "/login"
     }).fail(function(err){
       console.log(err);
-      alert("something went wrong!")
+      // alert("something went wrong!")
       location.reload();
     })
   }

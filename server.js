@@ -11,6 +11,15 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+      maxAge: 7200000
+  }
+}))
+
 var exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({
