@@ -18,6 +18,9 @@ router.delete("/api/items/:id", function (req, res) {
     });
   });
 
+  router.get('/cart',(req,res)=>{
+    res.render('cart')
+})
 
   // EXPORT
 // ===============================================================
