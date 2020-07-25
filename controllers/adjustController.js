@@ -20,6 +20,10 @@ router.put("/item/update/:id", function (req, res) {
     });
   });
 
+  router.get('/update',(req,res)=>{
+    res.render('users')
+})
+
 
   // EXPORT
 // ===============================================================
