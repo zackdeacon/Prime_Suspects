@@ -7,11 +7,6 @@
     line-height: 22px;
     padding: 14px 16px;
   }
-/* 
-.imgSize {
-height: 75%;
-width: 75%;
-} */
 
 label {
   color: #9575cd;
@@ -21,8 +16,6 @@ label {
 input {
   color: #9575cd;
 }
-
-
 
  .zackCard {
   /* margin: 5px; */
