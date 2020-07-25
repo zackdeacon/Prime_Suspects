@@ -19,6 +19,8 @@ router.post('/signup', (req, res) => {
     })
 })
 
+
+
 router.post('/login', (req, res) => {
     db.user.findOne({
         where: {
@@ -31,8 +33,13 @@ router.post('/login', (req, res) => {
             if (bcrypt.compareSync(req.body.password, user.password)) {
                 req.session.user = {
                     id: user.id,
-                    // name:user.name,
-                    email: user.email
+                    name: user.name,
+                    email: user.email,
+                    address: req.body.address,
+                    city: req.body.city,
+                    state: req.body.state,
+                    zip: req.body.zip,
+                    phoneNumber: req.body.phoneNumber
                 }
                 res.send("login successful!");
             } else {

@@ -11,15 +11,10 @@ $(document).ready(function () {
     const userZipInput = $("#userZip");
     const userFullNameInput = $("#userFullName");
     const userPhoneNumber = $("#userPhoneNumber");
-    const userForm = $("#addUser");
-
+    const userForm = $("#editUser");
+    getUserData();
     // ADDS AN EVENT LISTENER WHEN SUBMIT IS CLICKED
     $(userForm).on("submit", handleFormSubmit);
-
-    const url = window.location.search;
-    let userId;
-    userId = url.split("=")[1];
-    getUserData(postId, "user");
 
     // FUNCTIONS
     // ======================================================================================
@@ -86,17 +81,17 @@ $(document).ready(function () {
         })
     }
 
-    function getUserData(id, type) {
-        let queryUrl = "api/users/" + id;
-        $.get(queryUrl, function (data) {
-            // If this post exists, prefill our cms forms with its data
-            userEmailInput.val(data.email);
-            userPasswordInput.val(data.password);
-            userStreetAddressInput.val(data.address);
-            userCityInput.val(data.city);
-            userZipInput.val(data.zip);
-            userPhoneNumber.val(data.phoneNumber);
-            userFullNameInput.val(data.name);
+    function getUserData() {
+        $.ajax('/readsessions').done(function(data){
+            console.log(data);
+            if(data.user){
+                userEmailInput.val(data.user.email);
+                userStreetAddressInput.val(data.user.address);
+                userCityInput.val(data.user.city);
+                userZipInput.val(data.user.zip);
+                userPhoneNumber.val(data.user.phoneNumber);
+                userFullNameInput.val(data.user.name);
+            }
         })
     }
 });

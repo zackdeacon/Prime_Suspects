@@ -27,6 +27,9 @@ router.get('/signup',(req,res)=>{
     res.render('adduser')
 })
 
+router.get('/settings',(req,res)=>{
+    res.render('settings')
+})
 
 router.get('/login',(req,res)=>{
     res.render('login')
