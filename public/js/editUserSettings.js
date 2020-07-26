@@ -11,45 +11,40 @@ $(document).ready(function () {
     const userZipInput = $("#userZip");
     const userFullNameInput = $("#userFullName");
     const userPhoneNumber = $("#userPhoneNumber");
-    const userForm = $("#addUser");
-
+    const userForm = $("#editUser");
+    getUserData();
     // ADDS AN EVENT LISTENER WHEN SUBMIT IS CLICKED
     $(userForm).on("submit", handleFormSubmit);
-
-    const url = window.location.search;
-    let userId;
-    userId = url.split("=")[1];
-    getUserData(postId, "user");
 
     // FUNCTIONS
     // ======================================================================================
     function handleFormSubmit(event) {
         event.preventDefault();
-        if (
-            !userEmailInput.val().trim() ||
-            !userNameInput.val().trim() ||
-            !userPasswordInput.val().trim() ||
-            !userStreetAddressInput.val().trim() ||
-            !userCityInput.val().trim() ||
-            !userStateInput.val().trim() ||
-            !userZipInput.val().trim() ||
-            !userFullNameInput.val().trim() ||
-            !userPhoneNumber.val().trim()) {
-            return;
-        }
+        // if (
+        //     // !userEmailInput.val().trim() ||
+        //     !userNameInput.val().trim() ||
+        //     !userPasswordInput.val().trim() ||
+        //     !userStreetAddressInput.val().trim() ||
+        //     !userCityInput.val().trim() ||
+        //     !userStateInput.val().trim() ||
+        //     !userZipInput.val().trim() ||
+        //     !userFullNameInput.val().trim() ||
+        //     !userPhoneNumber.val().trim()) {
+        //     return;
+        // }
 
         // CONSTRUCTS A NEW USER OBJECT
         // ======================================================================================
         var userObj = {
             email: userEmailInput
-                .val()
-                .trim(),
+                .val(),
+                // .trim(),
             // username: userNameInput
             //     .val()
             //     .trim(),
             password: userPasswordInput
-                .val()
-                .trim(),
+                .val(),
+                // .trim(),
             name: userFullNameInput
                 .val(),
             // .trim(),
@@ -57,17 +52,17 @@ $(document).ready(function () {
                 .val(),
             // .trim()
             city: userCityInput
-                .val()
-                .trim(),
+                .val(),
+                // .trim(),
             state: userStateInput
-                .val()
-                .trim(),
+                .val(),
+                // .trim(),
             zip: userZipInput
-                .val()
-                .trim(),
+                .val(),
+                // .trim(),
             phoneNumber: userPhoneNumber
-                .val()
-                .trim(),
+                .val(),
+                // .trim(),
         };
         updateUser(userObj);
     }
@@ -75,28 +70,31 @@ $(document).ready(function () {
     function updateUser(userObj) {
         $.ajax({
             method: "PUT",
-            url: "/api/users",
-            data: userObj
+            url: "/settings",
+            data: userObj,
         }).done(function (data) {
             console.log(data);
-            location.href = "/login"
+            location.href = "/"
         }).fail(function (err) {
             console.log(err);
             location.reload();
         })
     }
 
-    function getUserData(id, type) {
-        let queryUrl = "api/users/" + id;
-        $.get(queryUrl, function (data) {
-            // If this post exists, prefill our cms forms with its data
-            userEmailInput.val(data.email);
-            userPasswordInput.val(data.password);
-            userStreetAddressInput.val(data.address);
-            userCityInput.val(data.city);
-            userZipInput.val(data.zip);
-            userPhoneNumber.val(data.phoneNumber);
-            userFullNameInput.val(data.name);
+    function getUserData() {
+        $.ajax('/readsessions').done(function(data){
+            // console.log(data);
+            if(data.user){
+                userEmailInput.val(data.user.email);
+                userStreetAddressInput.val(data.user.address);
+                userCityInput.val(data.user.city);
+                userZipInput.val(data.user.zip);
+                userStateInput.val(data.user.state);
+                userPhoneNumber.val(data.user.phoneNumber);
+                userFullNameInput.val(data.user.name);
+            } else {
+            location.href = "/"
+            }
         })
     }
 });
