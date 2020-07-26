@@ -87,6 +87,27 @@ router.get('/logout', (req, res) => {
     res.send('logged out!');
 })
 
+
+router.put('/:id', (req, res) => {
+    db.user.update({
+        name: user.name,
+        address: user.address,
+        city: user.city,
+        state: user.state,
+        zip: user.zip,
+        phoneNumber: user.phoneNumber, 
+    }, {
+        where: {
+            id: req.body.id
+        }
+    }).then(userUpdate => {
+        res.json(userUpdate)
+    }).catch(err => {
+        console.log(err);
+        res.status(500).end()
+    })
+})
+
 // EXPORT
 // ===============================================================
 module.exports = router;
