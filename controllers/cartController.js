@@ -41,9 +41,9 @@ router.get("/api/carts/:id", function (req, res){
 })
 
 
-  router.get('/cart',(req,res)=>{
-    res.render('cart')
-})
+//   router.get('/cart',(req,res)=>{
+//     res.render('cart')
+// })
 
   // EXPORT
 // ===============================================================

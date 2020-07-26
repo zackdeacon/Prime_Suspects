@@ -17,8 +17,12 @@ input {
   color: #9575cd;
 }
 
- .zackCard {
-  /* margin: 5px; */
+ .zackSubmit {
+   position: relative;
+  display: inline;
+  text-align: center;
+  width: auto;
+
 }
 
  .col {
@@ -42,8 +46,14 @@ input {
 .zackContent {
   
   height: 200px;
-    /* border: 1px solid purple; */
+    /* border: 1px solid greenyellow; */
+    overflow-wrap: break-word;
+ } 
 
+ .zackBottomContent {
+  height: 100px;
+    /* border: 1px solid greenyellow; */
+    overflow-wrap: break-word;
  } 
 
 .imageSizing {

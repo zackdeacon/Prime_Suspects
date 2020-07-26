@@ -15,13 +15,15 @@
                     <img src={{this.imageURLs}} class="imageSizing"
                         onerror="if (this.src != 'error.jpg') this.src = '/images/Logo1.jpeg'">
                 </div>
-                <div class="card-content">
+                <div class="card-content zackBottomContent">
                     <p class="blue-text">Price:${{this.prices_amountMax}}</p>
                     <br>
                     <p class="blue-text">{{this.brand}}</p>
                     <br>
-                    <button data-id={{id}} type="submit" class="btn red submit zackSubmit">Remove From Cart</button>
-                </div>
+                    </div>
+                <div class="card-content">
+                    <button data-id={{id}} type="submit" class="btn red submit zackSubmit">Remove</button>
+                    </div>
             </div>
         </div>
         {{/each}}
