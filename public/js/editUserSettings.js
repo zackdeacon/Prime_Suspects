@@ -89,6 +89,7 @@ $(document).ready(function () {
                 userStreetAddressInput.val(data.user.address);
                 userCityInput.val(data.user.city);
                 userZipInput.val(data.user.zip);
+                userStateInput.val(data.user.state);
                 userPhoneNumber.val(data.user.phoneNumber);
                 userFullNameInput.val(data.user.name);
             }
