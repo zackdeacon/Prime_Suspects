@@ -12,8 +12,13 @@ if (document.readyState == 'loading') {
     ready()
 }
 
+// let user = "";
 
-
+// function findUser() {$.ajax('/readsessions').done(function(data){
+//     return (data.user);
+// })
+// }
+// findUser();
 // FUNCTIONS
 // ===========================================================
 
@@ -40,9 +45,11 @@ function ready() {
     //     document.getElementsByClassName('btn-purchase')[0].addEventListener('click', purchaseClicked)
 
 
-    $(".zackSubmit").on("click", function(){
-        $.ajax('/readsessions').done(function(data){
-            if(data.user){
+    $(".zackSubmit").on("click", function(data){
+        console.log(data);
+        // if(cookie.user=== "undefined"){
+        //     location.href = "/"
+        //         } else {
     let clickedId = $(this).attr("data-id");
     $.ajax({
         url:"/api/items/",
@@ -50,10 +57,8 @@ function ready() {
         data: {itemId: clickedId}
     }).done(function(data){
         console.log(data);
-    })  } else {
-        location.href = "/login"
-        }
-    })
+    })  
+// }
     })
 }
 
