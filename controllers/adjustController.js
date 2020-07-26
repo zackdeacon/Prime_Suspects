@@ -20,8 +20,12 @@ router.put("/item/update/:id", function (req, res) {
     });
   });
 
-  router.get('/update',(req,res)=>{
+  router.get('/users',(req,res)=>{
+    if(!req.session.user){
+      res.redirect('/login')
+    }else{
     res.render('users')
+    }
 })
 
 

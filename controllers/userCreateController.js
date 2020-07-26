@@ -70,8 +70,10 @@ router.get('/cartRoute', (req, res) => {
             include:[db.item]}]
         }).then(userObj=>{
          const userObjJSON = userObj.toJSON();
-         console.log('-------------')
-         console.log(userObjJSON)
+        //  console.log('-------------')
+         const finalCart = userObjJSON.cart.items;
+         const hbsCartObj = {cartItems: finalCart}
+         return res.render("cart", hbsCartObj)
         //  res.render("cart",userObjJSON)
 })
     }
