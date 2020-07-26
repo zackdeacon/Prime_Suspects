@@ -32,6 +32,10 @@ router.get('/login',(req,res)=>{
     res.render('login')
 })
 
+router.get('/developers',(req,res)=>{
+    res.render('developers')
+})
+
 router.get("/cart/:id",(req,res)=>{
     db.cart.findOne({
         where:{
