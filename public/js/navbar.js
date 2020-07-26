@@ -1,11 +1,13 @@
 $.ajax('/readsessions').done(function(data){
     console.log(data);
     if(data.user){
-        // WILL FILL OUT AFTER WE KNOW MORE ABOUT THE FINAL NAV BAR SHAPE
         $("#navbarUser").text(`Hello, ${data.user.name}`)
-        // $("#navbar").empty();
-        // $("#navbar").append(`<span >Welcome, ${data.user.name}</span>`)
-        // $("#navbar").append("<a href='/clubhouse'>my page</a>")
-        // $("#navbar").append("<a href='/auth/logout'>logout</a>")
+    } else {
+        $("#nav-mobile").empty()
+        const link = $("<a>")
+        link.attr("href", "/login")
+        link.text("Login")
+        $("#nav-mobile").attr("class", "right")
+        $("#nav-mobile").append(link)
     }
 })

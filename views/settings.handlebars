@@ -1,19 +1,16 @@
 <div class="container blue-grey lighten-4">
     <div class="row">
         <div class="col-md-6 offset-md-3">
-            <form id="addUser">
+            <form id="editUser">
                 <div class="form-group">
-                    <label for="userName">Name:</label>
+                    {{!-- <label for="userName">Name:</label>
                     <input placeholder="Enter name here" type="text" class="form-control text-black" id="userName">
-                    <br />
+                    <br /> --}}
 
                     <label for="userPasword">Password:</label>
                     <input placeholder="Use something secure." type="password" class="form-control" id="userPassword">
                     <br />
 
-                    <label for="userEmail">Email:</label>
-                    <input placeholder="john_doe123@example.com" type="text" class="form-control" id="userEmail">
-                    <br />
 
                     <label for="userFullName">Full Name:</label>
                     <input placeholder="John B. Doe" type="text" class="form-control" id="userFullName">
@@ -40,6 +37,7 @@
                     <br>
                 </div>
                 <button type="submit" class="btn purple lighten-2 submit">Submit</button>
+                <button type="submit" class="btn red submit">DELETE USER</button>
         </div>
         </form>
     </div>

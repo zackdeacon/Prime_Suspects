@@ -19,6 +19,8 @@ router.post('/signup', (req, res) => {
     })
 })
 
+
+
 router.post('/login', (req, res) => {
     db.user.findOne({
         where: {
@@ -84,6 +86,52 @@ router.get('/logout', (req, res) => {
     req.session.destroy();
     res.send('logged out!');
 })
+
+router.put('/settings', (req, res) => {
+    db.user.update({
+        name: req.body.name,
+        address: req.body.address,
+        city: req.body.city,
+        state: req.body.state,
+        zip: req.body.zip,
+        phoneNumber: req.body.phoneNumber, 
+    }, {
+        where: {
+            id: req.session.user.id
+        }
+    }).then(userUpdate => {
+        res.json(userUpdate)
+    }).catch(err => {
+        console.log(err);
+        res.status(500).end()
+    })
+})
+
+// router.delete("/:id",(req,res)=>{
+//     if(!req.session.user){
+//         return res.status(401).send('login first jabroni!')
+//     } else{
+//         db.Blog.findOne({
+//             where:{
+//                 id:req.params.id
+//             }
+//         }).then(twine=>{
+//             if(req.session.user.id!==twine.UserId){
+//                 return res.status(401).send('not your tweet')
+//             } else{
+//                 db.Blog.destroy({
+//                     where:{
+//                         id:req.params.id
+//                     }
+//                 }).then(deleted=>{
+//                     res.json(deleted)
+//                 }).catch(err=>{
+//                     res.status(500).end()
+//                 })
+//             }
+//         })
+//     }
+// })
 
 // EXPORT
 // ===============================================================
