@@ -99,6 +99,8 @@ function addItemToCart(title, price, imageSrc) {
 }
 
 $(".zackSubmit").on("click", function(){
+    $.ajax('/readsessions').done(function(data){
+        if(data.user){
 let clickedId = $(this).attr("data-id");
 $.ajax({
     url:"/api/items/",
@@ -106,6 +108,9 @@ $.ajax({
     data: {itemId: clickedId}
 }).done(function(data){
     console.log(data);
+})  } else {
+    location.href = "/login"
+    }
 })
 })
 
