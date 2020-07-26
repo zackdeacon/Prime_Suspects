@@ -9,10 +9,12 @@
     "express": "^4.17.1",
     "express-handlebars": "^5.1.0",
     "express-session": "^1.17.1",
+    "expression": "0.0.1",
     "mysql": "^2.18.1",
     "mysql2": "^2.1.0",
     "path": "^0.12.7",
     "sequelize": "^6.3.3",
+    "session": "^0.1.0",
     "stripe": "^8.78.0",
     "uuid": "^8.2.0"
   },

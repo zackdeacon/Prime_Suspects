@@ -1,31 +1,30 @@
-
-
 <!-- card for shopping Cart -->
 <div class="container extraCol">
 
     {{!-- <div class="card large card-content light-blue lighten-4"> --}}
-        <h1 class="center">Shopping Cart<i class="large material-icons">add_shopping_cart</i></h1>
-        <h6 class="text-flow">Your Items:</h6>
-        <div class="row">
-            {{#each items}}
-            <div class="col s12 m6 l3">
-                <!-- shopping cart cards -->
-                <!-- Card Content -->
-                <div class="card small">
-                    <div class="card-content">
-                        <p class="blue-text">Name:{{this.name}}</p>
-                        <!-- Card Image -->
-                        <div class="card-image">
-                        <img src={{this.imageURLs}} class="imageSizing" onerror="if (this.src != 'error.jpg') this.src = '/images/Logo1.jpeg'">
-                        </div>
-                    </div>
+    <h1 class="center">Shopping Cart<i class="large material-icons">add_shopping_cart</i></h1>
+    <h6 class="text-flow">Your Items:</h6>
+    <div class="row">
+        {{#each cartItems}}
+        <div class="col s12 m6 l3">
+            <div class="card zackCard">
+                <div class="card-content zackContent">
+                    <p class="blue-text">{{this.name}}</p>
+                </div>
+                <div class="card-image zackImage">
+                    <img src={{this.imageURLs}} class="imageSizing"
+                        onerror="if (this.src != 'error.jpg') this.src = '/images/Logo1.jpeg'">
+                </div>
+                <div class="card-content">
                     <p class="blue-text">Price:${{this.prices_amountMax}}</p>
+                    <br>
                     <p class="blue-text">{{this.brand}}</p>
+                    <br>
+                    <button data-id={{id}} type="submit" class="btn deep-purple lighten-2 submit zackSubmit">Add to
+                        Cart!</button>
                 </div>
             </div>
-            {{/each}}
         </div>
+        {{/each}}
+    </div>
 </div>
-
-
-
