@@ -107,6 +107,7 @@ router.put('/settings', (req, res) => {
     })
 })
 
+// NEEDS A LOT OF TWEAKING FOR DELETING A USER.
 // router.delete("/:id",(req,res)=>{
 //     if(!req.session.user){
 //         return res.status(401).send('login first jabroni!')
