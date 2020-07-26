@@ -69,39 +69,31 @@
 
   </div>
 
+  <main>
+
   {{{ body }}}
 
-
+  </main>
+  
   <!-- </div> for background img -->
-  <!-- footer -->
-  <div class="container nav-wrapper">
-    <footer class="page-footer cyan lighten-2">
 
-      <div class="row">
-        <div class="col s12 m6 l3"></div>
-        <div class="col s12 m6 l3">
-          <h5 class="white-text">More about our Products</h5>
-          <ul>
-            <li><a class="grey-text text-lighten-3" href="/">Home</a></li>
-            <li><a class="grey-text text-lighten-3" href="cartRoute">Shopping Cart</a></li>
-          </ul>
-        </div>
+<div class="container footerContainer">
+<footer class="cyan lighten-2">
+<div class="center flow-text">
+  <div><a href="/">Home</a></div>
+  <div><a href="/developers">About</a></div>
 
-        <div class="col s12 m6 l3">
-          <h5 class="white-text">About the Developers</h5>
-          <ul>
-            <li><a class="grey-text text-lighten-3" href="/developers">Portfolio</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-copyright">
-        <div class="container center">
-          © 2020 Copyright
-        </div>
-      </div>
-    </footer>
+  <a href = "/cartRoute">Go to my Shopping Cart<i class="material-icons">add_shopping_cart</i></a>
+</div>
+  <div class="footer-copyright page-footer blue-grey">
+    <div class="container center">
+    © 2020 Copyright
+    </div>
   </div>
+  </div>
+</footer>
+
+
   <!-- script for initializing materialize -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script type="text/javascript">
@@ -112,7 +104,7 @@
     });
                 setInterval(function() {
     $('.carousel').carousel('next');
-  }, 2000); // every 2 seconds
+  }, 3000); // every 3 seconds
 
   </script>
     <script src="/js/navbar.js"></script>

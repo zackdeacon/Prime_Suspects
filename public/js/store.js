@@ -18,19 +18,7 @@ if (document.readyState == 'loading') {
 // ===========================================================
 
 function ready() {
-
-    $(".zackSubmit").on("click", function () {
-        let clickedId = $(this).attr("data-id");
-        $.ajax({
-            url: "/api/items/",
-            method: "POST",
-            data: { itemId: clickedId }
-        }).done(function (data) {
-            console.log(data);
-        })
-    })
-
-    //     const removeCartItemButtons = $('.remove-button')
+     //     const removeCartItemButtons = $('.remove-button')
     //     for (let i = 0; i < removeCartItemButtons.length; i++) {
     //         const button = removeCartItemButtons[i]
     //         button.addEventListener('click', removeCartItem)
@@ -50,8 +38,43 @@ function ready() {
     //     }
 
     //     document.getElementsByClassName('btn-purchase')[0].addEventListener('click', purchaseClicked)
+
+
+    $(".zackSubmit").on("click", function(){
+        $.ajax('/readsessions').done(function(data){
+            if(data.user){
+    let clickedId = $(this).attr("data-id");
+    $.ajax({
+        url:"/api/items/",
+        method: "POST",
+        data: {itemId: clickedId}
+    }).done(function(data){
+        console.log(data);
+    })  } else {
+        location.href = "/login"
+        }
+    })
+    })
 }
 
+function updateCartTotal() {
+    const cartItemContainer = $(".cart-items")
+
+    const cartRows = cartItemContainer.getElementsByClassName('cart-row')
+    const total = 0
+    for (let i = 0; i < cartRows.length; i++) {
+        const cartRow = cartRows[i]
+
+        const priceElement = cartRow.getElementsByClassName('cart-price')[0]
+        const quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0]
+        const price = parseFloat(priceElement.innerText.replace('$', ''))
+        const quantity = quantityElement.value
+        total = total + (price * quantity)
+    }
+
+    total = Math.round(total * 100) / 100
+    document.getElementsByClassName('cart-total-price')[0].innerText = `$ + ${total}`
+}
 // function purchaseClicked() {
 //     alert('Purchased')
 //     const cartItems = document.getElementsByClassName('cart-items')[0]
