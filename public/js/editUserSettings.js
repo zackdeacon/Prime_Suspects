@@ -83,7 +83,6 @@ $(document).ready(function () {
 
     function getUserData() {
         $.ajax('/readsessions').done(function(data){
-            // console.log(data);
             if(data.user){
                 userEmailInput.val(data.user.email);
                 userStreetAddressInput.val(data.user.address);
