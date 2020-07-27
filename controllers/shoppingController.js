@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 const router = express.Router();
 
 const db = require("../models/");
-
+const Op = Sequelize.Op;
 // route to find all items and then to loop over for 25 with pic price name and brand
 router.get("/", function (req, res) {
 
@@ -22,6 +22,25 @@ router.get("/", function (req, res) {
     }).catch(err => res.status(500).json(err));
 
 });
+
+// route to find all items based on search values 
+router.get("/search/:value", function (req, res) {
+
+      db.item.findAll({
+        where: {name: {
+            [Op.like]: `%${req.params.value}%`
+        }
+    }
+    })
+      .then(function (dbitems) {
+        // res.json(dbitems);
+        const dbitemssJson = dbitems.map(items => items.toJSON());
+        var hbsObject = { searchItems: dbitemssJson };
+        return res.render("search", hbsObject);
+      
+      }).catch(err => res.status(500).json(err));
+  
+  });
 
 router.get('/signup',(req,res)=>{
     res.render('adduser')
