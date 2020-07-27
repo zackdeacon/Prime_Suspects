@@ -40,7 +40,7 @@ $(document).ready(function () {
         var userObj = {
             email: userEmailInput
                 .val(),
-            // .trim(),
+                // .trim(),
             // username: userNameInput
             //     .val()
             //     .trim(),
