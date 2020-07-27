@@ -12,7 +12,7 @@ $(document).ready(function () {
 //             location.reload();
 //         })
 //     })
-var checkoutButton = document.getElementById('checkout-button');
+var checkoutButton = $('.checkout-button');
 
 checkoutButton.addEventListener('click', function() {
   stripe.redirectToCheckout({
@@ -35,3 +35,29 @@ var response = fetch('/api/id').then(function(response) {
     // Call stripe.redirectToCheckout() with the Session ID.
 });
 })
+
+
+
+// READ CART
+// CREATE AN OBJECT WITH ALL THE CART ITEMS
+// NEED CURRENCY(ALWAYS USD), PRODUCT NAME, THE AMOUNT(PROBABLY 1 FOR NOW), AND PRICE
+
+
+
+// EXAMPLE CODE
+// const session = await stripe.checkout.sessions.create({
+//     payment_method_types: ['card'],
+//     line_items: [{
+//       price_data: {
+//         currency: 'usd',
+//         product_data: {
+//           name: 'T-shirt',
+//         },
+//         unit_amount: 2000,
+//       },
+//       quantity: 1,
+//     }],
+//     mode: 'payment',
+//     success_url: 'https://example.com/success?session_id={CHECKOUT_SESSION_ID}',
+//     cancel_url: 'https://example.com/cancel',
+//   });
