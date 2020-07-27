@@ -11,10 +11,12 @@ $(document).ready(function () {
     const userZipInput = $("#userZip");
     const userFullNameInput = $("#userFullName");
     const userPhoneNumber = $("#userPhoneNumber");
-    const userForm = $("#editUser");
+    let userID;
     getUserData();
     // ADDS AN EVENT LISTENER WHEN SUBMIT IS CLICKED
-    $(userForm).on("submit", handleFormSubmit);
+    $("#editUser").on("click", handleFormSubmit);
+    $("#logout-button").on("click", logout)
+    // $("#deleteUser").on("click", deleteUser)
 
     // FUNCTIONS
     // ======================================================================================
@@ -38,13 +40,13 @@ $(document).ready(function () {
         var userObj = {
             email: userEmailInput
                 .val(),
-                // .trim(),
+            // .trim(),
             // username: userNameInput
             //     .val()
             //     .trim(),
             password: userPasswordInput
                 .val(),
-                // .trim(),
+            // .trim(),
             name: userFullNameInput
                 .val(),
             // .trim(),
@@ -53,16 +55,16 @@ $(document).ready(function () {
             // .trim()
             city: userCityInput
                 .val(),
-                // .trim(),
+            // .trim(),
             state: userStateInput
                 .val(),
-                // .trim(),
+            // .trim(),
             zip: userZipInput
                 .val(),
-                // .trim(),
+            // .trim(),
             phoneNumber: userPhoneNumber
                 .val(),
-                // .trim(),
+            // .trim(),
         };
         updateUser(userObj);
     }
@@ -74,17 +76,36 @@ $(document).ready(function () {
             data: userObj,
         }).done(function (data) {
             console.log(data);
-            location.href = "/"
+            location.href = "/logout"
         }).fail(function (err) {
             console.log(err);
             location.reload();
         })
     }
 
+    function logout(event) {
+        event.preventDefault();
+        location.href = "/logout"
+    }
+
+    // function deleteUser() {
+    //     event.preventDefault();
+    //     console.log(userID)
+    //     $.ajax({
+    //         method: "DELETE",
+    //         url: "/user/" + userID,
+    //     }).done(function (data) {
+    //         // location.href = "/"
+    //     }).fail(function (err) {
+    //         console.log(err);
+    //         location.reload();
+    //     })
+    // }
+
     function getUserData() {
-        $.ajax('/readsessions').done(function(data){
-            // console.log(data);
-            if(data.user){
+        $.ajax('/readsessions').done(function (data) {
+            if (data.user) {
+                userID=(data.user.id)
                 userEmailInput.val(data.user.email);
                 userStreetAddressInput.val(data.user.address);
                 userCityInput.val(data.user.city);
@@ -93,7 +114,7 @@ $(document).ready(function () {
                 userPhoneNumber.val(data.user.phoneNumber);
                 userFullNameInput.val(data.user.name);
             } else {
-            location.href = "/"
+                location.href = "/"
             }
         })
     }
