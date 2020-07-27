@@ -33,20 +33,20 @@ router.post('/login', (req, res) => {
             if (bcrypt.compareSync(req.body.password, user.password)) {
                 db.cart.create({
                     userId: user.id
-                }).then(function(cart){
-                req.session.user = {
-                    id: user.id,
-                    name: user.name,
-                    email: user.email,
-                    address: user.address,
-                    city: user.city,
-                    state: user.state,
-                    zip: user.zip,
-                    phoneNumber: user.phoneNumber,  
-                    cartId: cart.id              
-                }
-                res.send("login successful!");
-            })
+                }).then(function (cart) {
+                    req.session.user = {
+                        id: user.id,
+                        name: user.name,
+                        email: user.email,
+                        address: user.address,
+                        city: user.city,
+                        state: user.state,
+                        zip: user.zip,
+                        phoneNumber: user.phoneNumber,
+                        cartId: cart.id
+                    }
+                    res.send("login successful!");
+                })
             } else {
                 res.status(401).send("wrong password")
             }
@@ -61,30 +61,32 @@ router.get("/readsessions", (req, res) => {
 })
 
 router.get('/cartRoute', (req, res) => {
-    if(!req.session.user){
+    if (!req.session.user) {
         res.redirect('/login')
     } else {
         db.user.findOne({
-            where:{
-                id:req.session.user.id
+            where: {
+                id: req.session.user.id
             },
-            include:[{model: db.cart,
-            include:[db.item]}]
-        }).then(userObj=>{
-         const userObjJSON = userObj.toJSON();
-        //  console.log('-------------')
-         const finalCart = userObjJSON.cart.items;
-         const hbsCartObj = {cartItems: finalCart}
-         return res.render("cart", hbsCartObj)
-        //  res.render("cart",userObjJSON)
-})
+            include: [{
+                model: db.cart,
+                include: [db.item]
+            }]
+        }).then(userObj => {
+            const userObjJSON = userObj.toJSON();
+            //  console.log('-------------')
+            const finalCart = userObjJSON.cart.items;
+            const hbsCartObj = { cartItems: finalCart }
+            return res.render("cart", hbsCartObj)
+            //  res.render("cart",userObjJSON)
+        })
     }
 
 })
 
 router.get('/logout', (req, res) => {
     req.session.destroy();
-    res.send('logged out!');
+    res.render("loggedout");
 })
 
 router.put('/settings', (req, res) => {
@@ -94,7 +96,7 @@ router.put('/settings', (req, res) => {
         city: req.body.city,
         state: req.body.state,
         zip: req.body.zip,
-        phoneNumber: req.body.phoneNumber, 
+        phoneNumber: req.body.phoneNumber,
     }, {
         where: {
             id: req.session.user.id
@@ -107,31 +109,17 @@ router.put('/settings', (req, res) => {
     })
 })
 
-// NEEDS A LOT OF TWEAKING FOR DELETING A USER.
-// router.delete("/:id",(req,res)=>{
-//     if(!req.session.user){
-//         return res.status(401).send('login first jabroni!')
-//     } else{
-//         db.Blog.findOne({
-//             where:{
-//                 id:req.params.id
-//             }
-//         }).then(twine=>{
-//             if(req.session.user.id!==twine.UserId){
-//                 return res.status(401).send('not your tweet')
-//             } else{
-//                 db.Blog.destroy({
-//                     where:{
-//                         id:req.params.id
-//                     }
-//                 }).then(deleted=>{
-//                     res.json(deleted)
-//                 }).catch(err=>{
-//                     res.status(500).end()
-//                 })
-//             }
-//         })
-//     }
+// // NEEDS A LOT OF TWEAKING FOR DELETING A USER.
+// router.delete("/api/users/:id", (req, res) => {
+//     db.user.destroy({
+//         where: {
+//             id: req.params.id
+//         }
+//     }).then(function (userDelete) {
+//         res.json(userDelete);
+//     }).catch(err => {
+//         res.status(500).end()
+//     })
 // })
 
 // EXPORT

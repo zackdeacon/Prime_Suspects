@@ -1,7 +1,7 @@
 <div class="container blue-grey lighten-4">
     <div class="row">
         <div class="col-md-6 offset-md-3">
-            <form id="editUser">
+            <form>
                 <div class="form-group">
                     {{!-- <label for="userName">Name:</label>
                     <input placeholder="Enter name here" type="text" class="form-control text-black" id="userName">
@@ -36,8 +36,9 @@
                     <input placeholder="12345" type="text" class="form-control" id="userZip">
                     <br>
                 </div>
-                <button type="submit" class="btn purple lighten-2 submit">Submit</button>
-                <button type="submit" class="btn red submit">DELETE USER</button>
+                <button type="submit" id="editUser" class="btn purple lighten-2 submit">Submit</button>
+                <button type="submit" id="logout-button" class="btn purple lighten-2 submit">Log out</button>
+                {{!-- <button type="submit" id="deleteUser"class="btn right-align red submit">DELETE USER</button> --}}
         </div>
         </form>
     </div>
