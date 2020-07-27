@@ -16,11 +16,20 @@
   <!-- side nav bar for mobile-->
   <ul class="sidenav left" id="mobile-nav">
     <li class="blue-grey lighten-4"><a href="/">Home</a></li>
+      
+        <li> <form id="nav-mobile">
+      <div class="input-field " data-activates="mobile-demo">
+        <input class="purple" id="search" type="search" required>
+        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+        <i class="material-icons">close</i>
+      </div>
+    </form> </li>
+</li>
+    
+    <li class="light-blue"><a href="/cartRoute">Cart<i class="material-icons">add_shopping_cart</i></a></li>
     <li class="divider"></li>
     <li class="blue-grey darken-1"><a href="/settings">Edit Profile</a></li>
-    <li class="divider"></li>
-    <li class="light-blue"><a href="/cartRoute">Cart<i class="material-icons">add_shopping_cart</i></a>
-    </li>
+    
   </ul>
 
 
@@ -30,10 +39,10 @@
     <ul id="dropdown1" class="dropdown-content right hide-on-med-and-down">
       <li class="blue-grey lighten-4"><a href="/">Home</a></li>
       <li class="divider"></li>
-      <li class="blue-grey darken-1"><a href="/settings">Edit Profile</a></li>
-      <li class="divider"></li>
       <li class="light-blue"><a href="/cartRoute">Cart<i
             class="material-icons">add_shopping_cart</i></a></li>
+             <li class="blue-grey darken-1"><a href="/settings">Edit Profile</a></li>
+      <li class="divider"></li>
     </ul>
 
 
@@ -41,32 +50,33 @@
     <nav>
       <div class="nav-wrapper cyan lighten-2">
         <div class="left col s4 m4 l4">
-          <div class="row"></div>
           <!-- hamburger menu -->
-          <a href="#" class="sidenav-trigger" data-target="mobile-nav">
+          <div>
+          <a class="sidenav-trigger" data-target="mobile-nav">
             <i class="material-icons">menu</i>
           </a>
+          </div>
+          <!-- searchbar -->
+    <div class="row"></div>
+    <form class="input-field cyan lighten-2 hide-on-med-down">
 
-           {{!-- searchbar  --}}
-
-          {{!-- <form id="nav-mobile">
-      <div class="input-field" data-activates="mobile-demo">
         <input class="cyan lighten-2" id="search" type="search" required>
-        <label class="label-icon" for="search"><i class="material-icons hide-on-med-and-down">search</i></label>
+        <label class="label-icon" for="search"><i class="material-icons hide-on-med-on-down">search</i></label>
         <i class="material-icons">close</i>
-      </div>
-    </form>  --}}
+    
+    </form>
+    
+  </div>
 
-        </div>
         <div class="brand-logo center">
           <img class="responsive-img z-depth-5" src="\images\Logo2.jpeg">
         </div>
-        <ul id="nav-mobile" class="right">
+        <ul class="right">
           <!-- Dropdown Trigger -->
 
           <li id="navbar-li"><a class="dropdown-trigger button-collapse" href="#!" data-target="dropdown1"
               data-activates="dropdown-trigger button-collapse"><span id="navbarUser">Login</span>
-              <i class="material-icons right button-collapse">arrow_drop_down</i></a></li>
+              <i class="material-icons right hide-on-med-down">arrow_drop_down</a></i></li>
         </ul>
       </div>
 
