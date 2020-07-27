@@ -12,20 +12,20 @@ $(document).ready(function () {
 //             location.reload();
 //         })
 //     })
-var checkoutButton = $('.checkout-button');
+// var checkoutButton = $('.checkout-button');
 
-checkoutButton.addEventListener('click', function() {
-  stripe.redirectToCheckout({
+// checkoutButton.addEventListener('click', function() {
+  // stripe.redirectToCheckout({
     // Make the id field from the Checkout Session creation API response
     // available to this file, so you can provide it as argument here
     // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
-    sessionId: '{{CHECKOUT_SESSION_ID}}'
-  }).then(function (result) {
+    // sessionId: '{{CHECKOUT_SESSION_ID}}'
+  // }).then(function (result) {
     // If `redirectToCheckout` fails due to a browser or network
     // error, display the localized error message to your customer
     // using `result.error.message`.
-  });
-});
+  // });
+// });
 
 var response = fetch('/api/id').then(function(response) {
     return response.json();
