@@ -1,0 +1,76 @@
+
+<!-- div for background img -->
+<!-- <div class="nav-wrapper" style="background-image: url('https://icolorpalette.com/download/imagepost/cloud-2456926_1280.jpg'); background-repeat: no-repeat;"> -->
+<div class="container">
+
+<!-- carousel -->
+<div class="carousel">
+  <div class="carousel-item" >
+  <a href="#one!"><img src="https://www.youngupstarts.com/wp-content/uploads/2018/09/flexible-mobile-device.jpg" class="carousel-image"></a>
+</div>
+  <div class="carousel-item">
+    <a href="#two!"><img src="https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2020/01/samsung-1.png" class="carousel-image"></a>
+  </div>
+
+  <div class="carousel-item">
+    <a href="#three!"><img src="https://news-cdn.softpedia.com/images/news2/microsoft-hints-at-new-devices-launching-this-year-band-3-very-likely-505829-2.jpg" class="carousel-image"></a>
+  </div>
+
+  <div class="carousel-item">
+    <a href="#four!"><img src="https://support.smartthings.com/hc/article_attachments/202056943/Bose_Soundtouch_20.jpg" class="carousel-image"></a>
+  </div>
+
+  <div class="carousel-item">
+    <a href="#five!"><img src="https://www.techpowerup.com/img/cEktt8piAQKF4D7N.jpg" class="carousel-image"></a>
+  </div>
+    <div class="carousel-item" >
+  <a href="#six!"><img src="https://image-us.samsung.com/SamsungUS/home/explore/dex/mo-new/samsungdex_kv_mo.jpg?$default$" class="carousel-image"></a>
+</div>
+  <div class="carousel-item">
+    <a href="#seven!"><img src="https://www.maximimages.com/stock-photo/apple-iphone-ipad-and-macbook-pro-devices-MXI25435.jpg" class="carousel-image"></a>
+  </div>
+
+  <div class="carousel-item">
+    <a href="#eight!"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ7qiNJEZ3SoJfC2uYKMuuemWrfkRQ7co8reg&usqp=CAU" class="carousel-image"></a>
+  </div>
+
+  <div class="carousel-item">
+    <a href="#nine!"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTUQcow_qQfS21Qi21RlU0mub62quT9bjumMw&usqp=CAU" class="carousel-image"></a>
+  </div>
+
+  <div class="carousel-item">
+    <a href="#ten!"><img src="https://www.technobezz.com/files/uploads/2020/05/ts-2017-apple-buying-guide-800x500-1-600x375.jpg" class="carousel-image"></a>
+  </div>
+
+</div>
+
+
+<!-- responsive grid for body content as needed -->
+<div class="row">
+         {{#each searchItems}}
+        <div class="col s12 m6 l3">
+            <div class="card zackCard">
+                <div class="card-content zackContent">
+                    <p class="blue-text">{{this.name}}</p>
+                </div>
+                <div class="card-image zackImage">
+                    <img src={{this.imageURLs}} class="imageSizing"
+                        onerror="if (this.src != 'error.jpg') this.src = '/images/Logo1.jpeg'">
+                </div>
+                <div class="card-content zackBottomContent">
+                    <p class="blue-text">Price:${{this.prices_amountMax}}</p>
+                    <br>
+                    <p class="blue-text">{{this.brand}}</p>
+                    <br>
+                    </div>
+                <div class="card-content">
+                    <button data-id={{id}} type="submit" class="btn purple submit zackSubmit">Add to Cart</button>
+                    </div>
+            </div>
+        </div>
+  {{/each}}
+
+</div>
+
+</div>
+
