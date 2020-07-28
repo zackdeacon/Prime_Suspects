@@ -13,8 +13,6 @@ $(document).ready(function () {
     //     })
     // })
 
-
-
     // function deleteItem() {
     //     event.preventDefault();
     //     console.log(userID)
