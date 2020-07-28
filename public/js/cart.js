@@ -1,5 +1,6 @@
 // NOT QUITE WORKING YET
 $(document).ready(function () {
+    console.log("Ready")
     const stripe = Stripe('pk_test_51H6lyMACrjNtDH8GqBanKtwFegjiWxVci5kU3I8kXSc0gtl4hZg32JkxMpxobsCoJRyFKuR58V0KgdNwPLjLenpy009kCobCkO');
     $(".checkout-button").on("click", getCartID);
     // $(".zackSubmit").on("click", function () {
@@ -37,6 +38,7 @@ $(document).ready(function () {
     //     cancel_url: 'https://example.com/cancel'
     // }
     function getCartID() {
+        event.preventDefault()
 
         $.ajax('/readsessions').done(data => {
             cartId = data.user.cartId
@@ -47,10 +49,10 @@ $(document).ready(function () {
             $.ajax({
                 url: `/create-checkout-session/${cartId}`,
                 method: "POST"
-            }).done(cartId => {
-                return cartId.json();
+            }).done(result => {
+                return res.json(result)
             }).fail(err => {
-                console.log(err)
+                console.error(err)
             })
         }
     }
@@ -62,9 +64,9 @@ $(document).ready(function () {
         .then(function (json) {
             window.config = json;
             var stripe = Stripe(config.publicKey);
-            updateQuantity();
+            // updateQuantity();
             // Setup event handler to create a Checkout Session on submit
-            document.querySelector('#submit').addEventListener('click', function (evt) {
+            $('#submit').on('click', function (event) {
                 createCheckoutSession().then(function (data) {
                     stripe.redirectToCheckout({
                         sessionId: data.sessionId,

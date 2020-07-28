@@ -17,19 +17,23 @@ router.get('/checkout-session', async (req, res) => {
   res.send(session);
 });
 
-router.post('/create-checkout-session/:id', (req, res) => {
+router.post('/create-checkout-session/:id', async (req, res) => {
   db.cart.findOne({
     where: {
       id: req.params.id
     }, include: [db.item]
-  }).then(cartInfo => {
+  }).then(async cartInfo => {
+    const domainURL = process.env.DOMAIN;
     let cartObj =
     {
       payment_method_types: ['card'],
       line_items: [],
       mode: 'payment',
-      success_url: `${domainURL}/success.html?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${domainURL}/canceled.html`,
+      // success_url: `${domainURL}/?session_id=${req.query.sessionId}`,
+      success_url: `${domainURL}/`,
+      cancel_url: `${domainURL}/`,
+      // success_url: `${domainURL}/success.html?session_id={CHECKOUT_SESSION_ID}`,
+      // cancel_url: `${domainURL}/canceled.html`,
     }
     for (let i = 0; i < cartInfo.items.length; i++) {
       cartObj.line_items.push(
@@ -45,10 +49,8 @@ router.post('/create-checkout-session/:id', (req, res) => {
         },
       )
     }
-  }).then(function (cartInfo) {
-    const domainURL = process.env.DOMAIN;
-    const session = stripe.checkout.sessions.create(cartObj)
-    res.json(cartObj)
+    // const domainURL = process.env.DOMAIN;
+    const session = await stripe.checkout.sessions.create(cartObj)
     res.send({
       sessionId: session.id,
     });
