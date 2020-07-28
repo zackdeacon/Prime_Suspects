@@ -77,6 +77,7 @@ router.get('/cartRoute', (req, res) => {
             //  console.log('-------------')
             const finalCart = userObjJSON.cart.items;
             const hbsCartObj = { cartItems: finalCart }
+            console.log(hbsCartObj);
             return res.render("cart", hbsCartObj)
             //  res.render("cart",userObjJSON)
         })

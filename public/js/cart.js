@@ -36,12 +36,7 @@ var response = fetch('/api/id').then(function(response) {
 });
 })
 
-$("#zackSearch").submit(function(event){
-    event.preventDefault();
-    console.log("hello");
-  // let searched = $("#zackSearch").val().trim();
-  
-})
+
 
 
 

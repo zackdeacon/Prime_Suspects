@@ -7,7 +7,7 @@
     <div class="row">
         {{#each cartItems}}
         <div class="col s12 m6 l3">
-            <div class="card zackCard">
+            <div class="card hoverable zackCard">
                 <div class="card-content zackContent">
                     <p class="blue-text">{{this.name}}</p>
                 </div>
@@ -20,13 +20,13 @@
                     <br>
                     <p class="blue-text">{{this.brand}}</p>
                     <br>
-                </div>
+                    </div>
                 <div class="card-content">
-                    <button data-id={{id}} type="submit" class="btn-flat waves-effect pink accent-3 submit zackSubmit">Remove from Cart</button>
+                    <button data-id={{this.id}} type="submit" class="btn-flat waves-effect purple submit zackRemoveBtn">Remove</button>
                     </div>
             </div>
-        </div>
-        {{/each}}
+        </div>  
+         {{/each}}
     </div>
         <div class="row center-align">
             <button class="btn" id="checkout-button">Checkout</button>
