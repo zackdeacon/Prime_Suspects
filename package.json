@@ -10,6 +10,7 @@
     "express-handlebars": "^5.1.0",
     "express-session": "^1.17.1",
     "expression": "0.0.1",
+    "materialize-css": "^1.0.0",
     "mysql": "^2.18.1",
     "mysql2": "^2.1.0",
     "path": "^0.12.7",
