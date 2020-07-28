@@ -1,0 +1,37 @@
+<main>
+<!-- card for shopping Cart -->
+<div class="container extraCol">
+
+    {{!-- <div class="card large card-content light-blue lighten-4"> --}}
+    <h1 class="center">Shopping Cart<i class="large material-icons">add_shopping_cart</i></h1>
+    <h6 class="text-flow">Your Items:</h6>
+    <div class="row">
+        {{#each cartItems}}
+        <div class="col s12 m6 l3">
+            <div class="card hoverable zackCard">
+                <div class="card-content zackContent">
+                    <p class="blue-text">{{this.name}}</p>
+                </div>
+                <div class="card-image zackImage">
+                    <img src={{this.imageURLs}} class="imageSizing"
+                        onerror="if (this.src != 'error.jpg') this.src = '/images/Logo1.jpeg'">
+                </div>
+                <div class="card-content zackBottomContent">
+                    <p class="blue-text">Price:${{this.prices_amountMax}}</p>
+                    <br>
+                    <p class="blue-text">{{this.brand}}</p>
+                    <br>
+                    </div>
+                <div class="card-content">
+                    <button data-id={{this.id}} type="submit" class="btn-flat waves-effect purple submit zackRemoveBtn">Remove</button>
+                    </div>
+            </div>
+        </div>  
+         {{/each}}
+    </div>
+        <div class="row center-align">
+            <button class="btn checkout-button" id="checkout-button" data-secret={{ session_id }}>Checkout</button>
+        </div>
+</div>
+</main>
+<script src="/js/cart.js"></script>

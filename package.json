@@ -1,0 +1,39 @@
+{
+  "name": "Prime_Suspects",
+  "version": "1.0.0",
+  "main": "server.js",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "csv-parser": "^2.3.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.1.0",
+    "express-session": "^1.17.1",
+    "expression": "0.0.1",
+    "materialize-css": "^1.0.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.1.0",
+    "path": "^0.12.7",
+    "sequelize": "^6.3.3",
+    "session": "^0.1.0",
+    "stripe": "^8.78.0",
+    "uuid": "^8.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zackdeacon/Prime_Suspects.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zackdeacon/Prime_Suspects/issues"
+  },
+  "homepage": "https://github.com/zackdeacon/Prime_Suspects#readme",
+  "description": ""
+}
