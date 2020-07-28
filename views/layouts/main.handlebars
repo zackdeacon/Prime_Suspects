@@ -11,7 +11,7 @@
 </head>
 
 <body>
-
+<header>
 
   <!-- side nav bar for mobile-->
   <ul class="sidenav center" id="mobile-nav">
@@ -25,6 +25,9 @@
     <li class="divider"></li>
     <li class="blue-grey darken-1"><a href="/settings">Edit Profile</a></li>
     
+    <li class="divider"></li>
+    <li class="blue-grey darken-1"><a href="/logout">Log Out</a></li>
+    
   </ul>
 
 
@@ -37,6 +40,8 @@
       <i class="material-icons">add_shopping_cart</i></a></li>
             <li class="divider"></li>
      <li class="blue-grey darken-1"><a href="/settings">Edit Profile</a></li>
+      <li class="divider"></li>
+     <li class="blue-grey darken-4"><a href="/logout">Log Out</a></li>
       <li class="divider"></li>
     </ul>
 
@@ -76,21 +81,21 @@
 
           <li id="navbar-li"><a class="dropdown-trigger button-collapse" href="#!" data-target="dropdown1"
               data-activates="dropdown-trigger button-collapse"><span id="navbarUser">Login</span>
-              <i class="material-icons right hide-on-med-down">arrow_drop_down</a></i></li>
+              <i class="material-icons right hide-on-med-and-down">arrow_drop_down</a></i></li>
         </ul>
       </div>
 
 
-
+</header>
   <main>
 
   {{{ body }}}
 
-  </main>
+</main>
   
-  <!-- </div> for background img -->
 
-<div class="footerContainer">
+
+
 <footer class="cyan lighten-2">
 <div class="center flow-text">
   <div><a href="/">Home</a></div>
@@ -114,10 +119,13 @@
       $(".dropdown-trigger").dropdown();
       $('.sidenav').sidenav();
       $('.carousel').carousel();
+      $('.carousel.carousel-slider').carousel({full_width: true});
     });
-                setInterval(function() {
+         setInterval(function() {
     $('.carousel').carousel('next');
-  }, 3000); // every 3 seconds
+    $('.slider').slider('next');
+  }, 2000);
+    // every 3 seconds --}}
 
   </script>
     <script src="/js/navbar.js"></script>
