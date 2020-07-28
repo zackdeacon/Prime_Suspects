@@ -57,12 +57,12 @@
           </a>
           </div>
           <!-- searchbar -->
-    <div class="row"></div>
-    <form class="input-field cyan lighten-2 hide-on-med-down">
+    
+    <form class="input-field cyan lighten-2 hide-on-med-down" id="zackSearch">
 
-        <input class="cyan lighten-2" id="search" type="search" required>
+        <input class="zackSearch cyan lighten-2" id="search" type="search" required>
         <label class="label-icon" for="search"><i class="material-icons hide-on-med-on-down">search</i></label>
-        <i class="material-icons">close</i>
+        {{!-- <i class="material-icons">close</i> --}}
     
     </form>
     
@@ -71,7 +71,7 @@
         <div class="brand-logo center">
           <img class="responsive-img z-depth-5" src="\images\Logo2.jpeg">
         </div>
-        <ul class="right">
+        <ul class="right" id="navList">
           <!-- Dropdown Trigger -->
 
           <li id="navbar-li"><a class="dropdown-trigger button-collapse" href="#!" data-target="dropdown1"
