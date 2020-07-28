@@ -1,63 +1,93 @@
 // NOT QUITE WORKING YET
-console.log("Hello world!")
 $(document).ready(function () {
-//     $(".zackSubmit").on("click", function () {
-//         let clickedId = $(this).attr("data-id");
-//         $.ajax({
-//             url: `/cartRoute/${clickedId}`,
-//             method: "DELETE",
-//             data: itemId 
-//         }).done(function (data) {
-//             console.log(data);
-//             location.reload();
-//         })
-//     })
-// var checkoutButton = $('.checkout-button');
+    let cartId;
+    getCartID();
+    // const stripe = Stripe('pk_test_51H6lyMACrjNtDH8GqBanKtwFegjiWxVci5kU3I8kXSc0gtl4hZg32JkxMpxobsCoJRyFKuR58V0KgdNwPLjLenpy009kCobCkO');
+    // $(".checkout-button").on("click", getCartID);
 
-// checkoutButton.addEventListener('click', function() {
-  // stripe.redirectToCheckout({
-    // Make the id field from the Checkout Session creation API response
-    // available to this file, so you can provide it as argument here
-    // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
-    // sessionId: '{{CHECKOUT_SESSION_ID}}'
-  // }).then(function (result) {
-    // If `redirectToCheckout` fails due to a browser or network
-    // error, display the localized error message to your customer
-    // using `result.error.message`.
-  // });
-// });
+    // $(".zackSubmit").on("click", function () {
+    //     let clickedId = $(this).attr("data-id");
+    //     $.ajax({
+    //         url: `/api/carts/${clickedId}`,
+    //         method: "DELETE",
+    //         data: clickedId 
+    //     }).done(function (data) {
+    //         console.log(data);
+    //         location.reload();
+    //     })
+    // })
 
-var response = fetch('/api/id').then(function(response) {
-    return response.json();
-}).then(function(responseJson) {
-    var sessionID = responseJson.session_id;
-    stripe.redirectToCheckout(sessionID)
-    // Call stripe.redirectToCheckout() with the Session ID.
-});
+    // function deleteItem() {
+    //     event.preventDefault();
+    //     console.log(userID)
+    //     $.ajax({
+    //         method: "DELETE",
+    //         url: "/user/" + userID,
+    //     }).done(function (data) {
+    //         // location.href = "/"
+    //     }).fail(function (err) {
+    //         console.log(err);
+    //         location.reload();
+    //     })
+    // }
+
+    // cartObj =
+    // {
+    //     payment_method_types: ['card'],
+    //     line_items: [],
+    //     mode: 'payment',
+    //     success_url: 'https://example.com/success?session_id={CHECKOUT_SESSION_ID}',
+    //     cancel_url: 'https://example.com/cancel'
+    // }
+    function getCartID() {
+        event.preventDefault()
+
+        $.ajax('/readsessions').done(data => {
+            cartId = data.user.cartId
+            // createCheckoutSession(cartId)
+        })
+
+        //     function createCheckoutSession(cartId) {
+        //         $.ajax({
+        //             url: `/create-checkout-session/${cartId}`,
+        //             method: "POST"
+        //         }).done(result => {
+        //             return result.json()
+        //         }).fail(err => {
+        //             console.error(err)
+        //         })
+        //     }
+        // }
+    }
+
+    var createCheckoutSession = function () {
+        return fetch(`/create-checkout-session/${cartId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+            }),
+        }).then(function (result) {
+            return result.json();
+        });
+    };
+
+    fetch('/config')
+        .then(function (result) {
+            return result.json();
+        })
+        .then(function (json) {
+            window.config = json;
+            var stripe = Stripe(config.publicKey);
+            // updateQuantity();
+            // Setup event handler to create a Checkout Session on submit
+            $('#checkout-button').on('click', function (event) {
+                createCheckoutSession().then(function (data) {
+                    stripe.redirectToCheckout({
+                        sessionId: data.sessionId,
+                    }).then(handleResult);
+                });
+            });
+        });
 })
-
-
-
-// READ CART
-// CREATE AN OBJECT WITH ALL THE CART ITEMS
-// NEED CURRENCY(ALWAYS USD), PRODUCT NAME, THE AMOUNT(PROBABLY 1 FOR NOW), AND PRICE
-
-
-
-// EXAMPLE CODE
-// const session = await stripe.checkout.sessions.create({
-//     payment_method_types: ['card'],
-//     line_items: [{
-//       price_data: {
-//         currency: 'usd',
-//         product_data: {
-//           name: 'T-shirt',
-//         },
-//         unit_amount: 2000,
-//       },
-//       quantity: 1,
-//     }],
-//     mode: 'payment',
-//     success_url: 'https://example.com/success?session_id={CHECKOUT_SESSION_ID}',
-//     cancel_url: 'https://example.com/cancel',
-//   });

@@ -3,7 +3,6 @@ $(document).ready(function () {
     // CAPTURES THE VALUES
     // ======================================================================================
     const userEmailInput = $("#userEmail");
-    const userNameInput = $("#userName");
     const userPasswordInput = $("#userPassword");
     const userStreetAddressInput = $("#userStreetAddress");
     const userCityInput = $("#userCity");
@@ -13,58 +12,26 @@ $(document).ready(function () {
     const userPhoneNumber = $("#userPhoneNumber");
     let userID;
     getUserData();
+    
     // ADDS AN EVENT LISTENER WHEN SUBMIT IS CLICKED
     $("#editUser").on("click", handleFormSubmit);
     $("#logout-button").on("click", logout)
     // $("#deleteUser").on("click", deleteUser)
 
-    // FUNCTIONS
-    // ======================================================================================
     function handleFormSubmit(event) {
         event.preventDefault();
-        // if (
-        //     // !userEmailInput.val().trim() ||
-        //     !userNameInput.val().trim() ||
-        //     !userPasswordInput.val().trim() ||
-        //     !userStreetAddressInput.val().trim() ||
-        //     !userCityInput.val().trim() ||
-        //     !userStateInput.val().trim() ||
-        //     !userZipInput.val().trim() ||
-        //     !userFullNameInput.val().trim() ||
-        //     !userPhoneNumber.val().trim()) {
-        //     return;
-        // }
 
         // CONSTRUCTS A NEW USER OBJECT
         // ======================================================================================
         var userObj = {
-            email: userEmailInput
-                .val(),
-            // .trim(),
-            // username: userNameInput
-            //     .val()
-            //     .trim(),
-            password: userPasswordInput
-                .val(),
-            // .trim(),
-            name: userFullNameInput
-                .val(),
-            // .trim(),
-            address: userStreetAddressInput
-                .val(),
-            // .trim()
-            city: userCityInput
-                .val(),
-            // .trim(),
-            state: userStateInput
-                .val(),
-            // .trim(),
-            zip: userZipInput
-                .val(),
-            // .trim(),
-            phoneNumber: userPhoneNumber
-                .val(),
-            // .trim(),
+            email: userEmailInput.val(),
+            password: userPasswordInput.val(),
+            name: userFullNameInput.val(),
+            address: userStreetAddressInput.val(),
+            city: userCityInput.val(),
+            state: userStateInput.val(),
+            zip: userZipInput.val(),
+            phoneNumber: userPhoneNumber.val(),
         };
         updateUser(userObj);
     }

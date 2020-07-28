@@ -1,9 +1,15 @@
 // ADD TO THE HTML***
 /* <script src="store.js" async></script> */
 // ===========================================================
+let userId;
+function getUserId() {
 
 // V=- NEEDS ADJUSTING TO JQUERY -=V //
-
+$.ajax('/readsessions').done(data => {
+    userId = data.user.cartId
+    // createCheckoutSession(cartId)
+})
+}
 // GLOBAL VARIABLES
 // ===========================================================
 if (document.readyState == 'loading') {
@@ -12,17 +18,8 @@ if (document.readyState == 'loading') {
     ready()
 }
 
-// let user = "";
-
-// function findUser() {$.ajax('/readsessions').done(function(data){
-//     return (data.user);
-// })
-// }
-// findUser();
-// FUNCTIONS
-// ===========================================================
-
 function ready() {
+    getUserId();
      //     const removeCartItemButtons = $('.remove-button')
     //     for (let i = 0; i < removeCartItemButtons.length; i++) {
     //         const button = removeCartItemButtons[i]
@@ -46,11 +43,12 @@ function ready() {
 
 
     $(".zackSubmit").on("click", function(data){
-        console.log(data);
+        // console.log(data);
         // if(cookie.user=== "undefined"){
         //     location.href = "/"
         //         } else {
     let clickedId = $(this).attr("data-id");
+            console.log(clickedId);
     $.ajax({
         url:"/api/items/",
         method: "POST",
@@ -58,9 +56,29 @@ function ready() {
     }).done(function(data){
         console.log(data);
     })  
+    })
+
+    $(".zackRemoveBtn").on("click", function(data){
+        // console.log(data);
+        // if(cookie.user=== "undefined"){
+        //     location.href = "/"
+        //         } else {
+            console.log(userId)
+    let clickedId = $(this).attr("data-id");
+            console.log(clickedId);
+    $.ajax({
+        url:`/cart/delete/${userId}/${clickedId}`,
+        method: "DELETE",
+        data: {itemId: clickedId}
+    }).done(function(data){
+        console.log(data);
+        location.reload();
+    })  
 // }
     })
 }
+
+
 
 function updateCartTotal() {
     const cartItemContainer = $(".cart-items")
@@ -80,6 +98,24 @@ function updateCartTotal() {
     total = Math.round(total * 100) / 100
     document.getElementsByClassName('cart-total-price')[0].innerText = `$ + ${total}`
 }
+
+$("#zackSubmit").on("submit", function(event){
+    event.preventDefault();
+  let searched = $(".zackGrab").val();
+//   console.log(searched);
+$.ajax({
+    url:`/search/${$(".zackGrab").val()}`,
+    method:"GET"
+}).done(data=>{
+    location.href = `/search/${searched}`
+}).fail(err=>{
+    alert('something went wrong');
+    window.location.reload();
+})
+  
+})
+
+
 // function purchaseClicked() {
 //     alert('Purchased')
 //     const cartItems = document.getElementsByClassName('cart-items')[0]

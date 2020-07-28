@@ -2,7 +2,7 @@ var express = require("express");
 const session = require("express-session");
 require('dotenv').config();
 var db = require("./models");
-
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 var app = express();
 
 app.use(express.static("public"));
@@ -42,8 +42,12 @@ app.use(userAdjustRoutes);
 const stripeRoutes = require("./controllers/stripeController.js");
 app.use(stripeRoutes);
 
+app.get('/checkout', async (req, res) => {
+  const session = // ... Fetch or create the Checkout Session
+  res.render('checkout', { session_id: session.id });
+});
 
-var PORT = process.env.PORT || 4350;
+var PORT = process.env.PORT || 4351;
 db.sequelize.sync({force:false}).then(function() {
   app.listen(PORT, function() {
     console.log("App now listening on port:", PORT);
