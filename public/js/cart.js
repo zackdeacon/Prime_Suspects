@@ -1,8 +1,10 @@
 // NOT QUITE WORKING YET
 $(document).ready(function () {
-    console.log("Ready")
-    const stripe = Stripe('pk_test_51H6lyMACrjNtDH8GqBanKtwFegjiWxVci5kU3I8kXSc0gtl4hZg32JkxMpxobsCoJRyFKuR58V0KgdNwPLjLenpy009kCobCkO');
-    $(".checkout-button").on("click", getCartID);
+    let cartId;
+    getCartID();
+    // const stripe = Stripe('pk_test_51H6lyMACrjNtDH8GqBanKtwFegjiWxVci5kU3I8kXSc0gtl4hZg32JkxMpxobsCoJRyFKuR58V0KgdNwPLjLenpy009kCobCkO');
+    // $(".checkout-button").on("click", getCartID);
+
     // $(".zackSubmit").on("click", function () {
     //     let clickedId = $(this).attr("data-id");
     //     $.ajax({
@@ -42,20 +44,34 @@ $(document).ready(function () {
 
         $.ajax('/readsessions').done(data => {
             cartId = data.user.cartId
-            createCheckoutSession(cartId)
+            // createCheckoutSession(cartId)
         })
 
-        function createCheckoutSession(cartId) {
-            $.ajax({
-                url: `/create-checkout-session/${cartId}`,
-                method: "POST"
-            }).done(result => {
-                return res.json(result)
-            }).fail(err => {
-                console.error(err)
-            })
-        }
+        //     function createCheckoutSession(cartId) {
+        //         $.ajax({
+        //             url: `/create-checkout-session/${cartId}`,
+        //             method: "POST"
+        //         }).done(result => {
+        //             return result.json()
+        //         }).fail(err => {
+        //             console.error(err)
+        //         })
+        //     }
+        // }
     }
+
+    var createCheckoutSession = function () {
+        return fetch(`/create-checkout-session/${cartId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+            }),
+        }).then(function (result) {
+            return result.json();
+        });
+    };
 
     fetch('/config')
         .then(function (result) {
@@ -66,7 +82,7 @@ $(document).ready(function () {
             var stripe = Stripe(config.publicKey);
             // updateQuantity();
             // Setup event handler to create a Checkout Session on submit
-            $('#submit').on('click', function (event) {
+            $('#checkout-button').on('click', function (event) {
                 createCheckoutSession().then(function (data) {
                     stripe.redirectToCheckout({
                         sessionId: data.sessionId,
