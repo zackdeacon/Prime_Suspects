@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
+require('dotenv').config();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
 
-router.get('/id', async (req, res) => {
-  const session = // ... Fetch or create the Checkout Session
-  res.json({session_id: session.id});
-});
+// router.get('/checkout', async (req, res) => {
+//   const session = // ... Fetch or create the Checkout Session
+//   res.render('checkout', { session_id: session.id });
+// });
 
 router.get('/checkout-session', async (req, res) => {
   const { sessionId } = req.query;
@@ -13,29 +14,55 @@ router.get('/checkout-session', async (req, res) => {
   res.send(session);
 });
 
-router.post('/create-checkout-session', async (req, res) => {
-  const domainURL = process.env.DOMAIN;
+// router.post('/create-checkout-session', async (req, res) => {
+//   const domainURL = process.env.DOMAIN;
+//   db.cart.findOne({
+//     where: {
+//       id: req.params.id
+//     }, include: [db.item]
+//   }).then()
+//   const session = await stripe.checkout.sessions.create({
+//     payment_method_types: ['card'],
+//     line_items: [],
+//     mode: 'payment',
+//     // ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
+//     success_url: `${domainURL}/success.html?session_id={CHECKOUT_SESSION_ID}`,
+//     cancel_url: `${domainURL}/canceled.html`,
+//   });
 
-  const { quantity, locale } = req.body;
-  // Create new Checkout Session for the order
-  // Other optional params include:
-  // [billing_address_collection] - to display billing address details on the page
-  // [customer] - if you have an existing Stripe Customer ID
-  // [customer_email] - lets you prefill the email input in the Checkout page
-  // For full details see https://stripe.com/docs/api/checkout/sessions/create
+//   res.send({
+//     sessionId: session.id,
+//   });
+// })
+
+router.get('/config', async (req, res) => {
+  // const price = await stripe.prices.retrieve(process.env.PRICE);
+
+  res.send({
+    publicKey: process.env.STRIPE_PUBLISHABLE_KEY,
+    unitAmount: price.unit_amount,
+    currency: price.currency,
+  }).catch(err =>{
+    console.log(err)
+  })
+});
+
+router.post('/create-checkout-session', async (req, res) => {
   const session = await stripe.checkout.sessions.create({
-    payment_method_types: process.env.PAYMENT_METHODS.split(', '),
-    mode: 'payment',
-    locale: locale,
-    line_items: [
-      {
-        price: process.env.PRICE,
-        quantity: quantity
+    payment_method_types: ['card'],
+    line_items: [{
+      price_data: {
+        currency: 'usd',
+        product_data: {
+          name: 'T-shirt',
+        },
+        unit_amount: 2000,
       },
-    ],
-    // ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
-    success_url: `${domainURL}/success.html?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${domainURL}/canceled.html`,
+      quantity: 1,
+    }],
+    mode: 'payment',
+    success_url: 'https://example.com/success?session_id={CHECKOUT_SESSION_ID}',
+    cancel_url: 'https://example.com/cancel',
   });
 
   res.send({
@@ -43,38 +70,6 @@ router.post('/create-checkout-session', async (req, res) => {
   });
 });
 
-// // THIS IS FOR STRIPE
-// router.get('/public-keys', (req, res) => {
-//   res.send({ key: process.env.STRIPE_PUBLISHABLE_KEY })
-// })
-
-// // THIS IS FOR STRIPE BUT IS NOT HOOKED UP
-// router.post('/my-route', (req, res) => {
-//   console.log('body', req.body)
-//   // PUT DATA IN DB
-//   res.send(req.body);
-// })
-
-// // THIS IS FOR STRIPE WEBHOOKS. WE DON'T HAVE TO USE, BUT I WOULD LIKE TO
-// router.post('/webhook', (req, res) => {
-//   const event = req.body;
-
-//   switch (event.type) {
-//     case 'checkout.session.completed':
-//       const session = event.data.object;
-//       console.log("Checkout Session ID: ", session.id)
-//       break;
-
-//     case 'payment_intent.created':
-//       const paymentIntent = event.data.object
-//       console.log('PaymentIntent Created ', paymentIntent.id)
-//       break;
-
-//     default:
-//       console.log('Unknown event type: ' + event.type)
-//   }
-//   res.send({ message: 'success' });
-// })
 
 // EXPORT
 // ===============================================================
