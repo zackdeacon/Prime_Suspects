@@ -42,6 +42,7 @@ fs.createReadStream('DatafinitiElectronicsProductsPricingData.csv')
     console.log('CSV file successfully processed');
     db.item.bulkCreate(csvData).then(function(data){
         // console.log(data[0]);
+        res.send("seeded")
     }).catch(err =>  console.log(err));
   // db.item.create(csvData[0]).then(function(data){
   //       console.log(data);
