@@ -42,7 +42,29 @@ input {
 
 } 
 
+/* searchbar  */
+.nav-wrapper .input-field input[type=search] {
+  height: 64px;
+}
+.nav-wrapper input[type="search"]:focus {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.input-field label {
+  max-height: 64px;
+}
+.nav-wrapper input[type="search"]:focus ~ .label-icon.active {
+  position: fixed;
+  left: 10px;
+}
+.nav-wrapper input[type="search"]:focus ~ .closed {
+  position: fixed;
+  right: 10px;
+}
 
+/* search bar ^ */
 .zackContent {
   
   height: 200px;
