@@ -50,7 +50,9 @@ router.get("/success", (req, res) => {
     res.render('success')
 })
 
-
+router.get("/failure", (req, res) => {
+    res.render('failure')
+})
 router.get('/settings',(req,res)=>{
     res.render('settings')
 })
