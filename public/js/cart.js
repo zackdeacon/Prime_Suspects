@@ -1,6 +1,7 @@
 // NOT QUITE WORKING YET
 $(document).ready(function () {
-    var stripe = Stripe('pk_test_51H6lyMACrjNtDH8GqBanKtwFegjiWxVci5kU3I8kXSc0gtl4hZg32JkxMpxobsCoJRyFKuR58V0KgdNwPLjLenpy009kCobCkO');
+    const stripe = Stripe('pk_test_51H6lyMACrjNtDH8GqBanKtwFegjiWxVci5kU3I8kXSc0gtl4hZg32JkxMpxobsCoJRyFKuR58V0KgdNwPLjLenpy009kCobCkO');
+    $(".checkout-button").on("click", getCartID);
     // $(".zackSubmit").on("click", function () {
     //     let clickedId = $(this).attr("data-id");
     //     $.ajax({
@@ -26,53 +27,51 @@ $(document).ready(function () {
     //         location.reload();
     //     })
     // }
-    
-    const checkoutButton = $('.checkout-button');
-    cartObj =
-    {
-        payment_method_types: ['card'],
-        line_items: [],
-        mode: 'payment',
-        success_url: 'https://example.com/success?session_id={CHECKOUT_SESSION_ID}',
-        cancel_url: 'https://example.com/cancel'
-    }
 
+    // cartObj =
+    // {
+    //     payment_method_types: ['card'],
+    //     line_items: [],
+    //     mode: 'payment',
+    //     success_url: 'https://example.com/success?session_id={CHECKOUT_SESSION_ID}',
+    //     cancel_url: 'https://example.com/cancel'
+    // }
     function getCartID() {
 
-        $.ajax('/readsessions').done(function (data) {
+        $.ajax('/readsessions').done(data => {
             cartId = data.user.cartId
-            readCart(cartId)
+            createCheckoutSession(cartId)
         })
 
-        function readCart(cartId) {
+        function createCheckoutSession(cartId) {
             $.ajax({
-                url: `/api/carts/${cartId}`,
-                method: "GET"
-            }).done(function (cartInfo) {
-                for (let i = 0; i < cartInfo.items.length; i++) {
-                    cartObj.line_items.push(
-                        {
-                            price_data: {
-                                currency: 'usd',
-                                product_data: {
-                                    name: cartInfo.items[i].name
-                                },
-                                unit_amount: cartInfo.items[i].prices_amountMax,
-                            },
-                            quantity: 1,
-                        },
-                    )
-                }
-                // console.log(cartInfo);
-                console.log(cartObj)
+                url: `/create-checkout-session/${cartId}`,
+                method: "POST"
+            }).done(cartId => {
+                return cartId.json();
             }).fail(err => {
                 console.log(err)
             })
         }
-
     }
-    getCartID();
 
-
-    // const session = await stripe.checkout.sessions.create(cartObj);
+    fetch('/config')
+        .then(function (result) {
+            return result.json();
+        })
+        .then(function (json) {
+            window.config = json;
+            var stripe = Stripe(config.publicKey);
+            updateQuantity();
+            // Setup event handler to create a Checkout Session on submit
+            document.querySelector('#submit').addEventListener('click', function (evt) {
+                createCheckoutSession().then(function (data) {
+                    stripe
+                        .redirectToCheckout({
+                            sessionId: data.sessionId,
+                        })
+                        .then(handleResult);
+                });
+            });
+        });
 })

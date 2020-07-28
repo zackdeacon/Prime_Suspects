@@ -5,11 +5,6 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
 
 const db = require("../models/");
 
-// router.get('/checkout', async (req, res) => {
-//   const session = // ... Fetch or create the Checkout Session
-//   res.render('checkout', { session_id: session.id });
-// });
-
 router.get('/config', async (req, res) => {
   res.send({
     publicKey: process.env.STRIPE_PUBLISHABLE_KEY,
@@ -22,23 +17,38 @@ router.get('/checkout-session', async (req, res) => {
   res.send(session);
 });
 
-router.post('/create-checkout-session', async (req, res) => {
-  const domainURL = process.env.DOMAIN;
+router.post('/create-checkout-session/:id', (req, res) => {
   db.cart.findOne({
     where: {
-      cartId: req.session.user.cartId
+      id: req.params.id
     }, include: [db.item]
-  }).then(function (cartitems) {
-    console.log(cartitems)
-    // const session = await stripe.checkout.sessions.create({
-    //   payment_method_types: ['card'],
-    //   line_items: [],
-    //   mode: 'payment',
-    //   // ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
-    //   success_url: `${domainURL}/success.html?session_id={CHECKOUT_SESSION_ID}`,
-    //   cancel_url: `${domainURL}/canceled.html`,
-    // });
-
+  }).then(cartInfo => {
+    let cartObj =
+    {
+      payment_method_types: ['card'],
+      line_items: [],
+      mode: 'payment',
+      success_url: `${domainURL}/success.html?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${domainURL}/canceled.html`,
+    }
+    for (let i = 0; i < cartInfo.items.length; i++) {
+      cartObj.line_items.push(
+        {
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: cartInfo.items[i].name
+            },
+            unit_amount: cartInfo.items[i].prices_amountMax,
+          },
+          quantity: 1,
+        },
+      )
+    }
+  }).then(function (cartInfo) {
+    const domainURL = process.env.DOMAIN;
+    const session = stripe.checkout.sessions.create(cartObj)
+    res.json(cartObj)
     res.send({
       sessionId: session.id,
     });
