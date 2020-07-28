@@ -30,8 +30,8 @@ router.post('/create-checkout-session/:id', async (req, res) => {
       line_items: [],
       mode: 'payment',
       // success_url: `${domainURL}/?session_id=${req.query.sessionId}`,
-      success_url: `${domainURL}/success`,
-      cancel_url: `${domainURL}/failure`,
+      success_url: `${domainURL}success`,
+      cancel_url: `${domainURL}failure`,
       // success_url: `${domainURL}/success.html?session_id={CHECKOUT_SESSION_ID}`,
       // cancel_url: `${domainURL}/canceled.html`,
     }
