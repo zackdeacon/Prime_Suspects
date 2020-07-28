@@ -1,10 +1,14 @@
 const express = require("express");
 const router = express.Router();
+require('dotenv').config();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
 
-router.get('/id', async (req, res) => {
-  const session = // ... Fetch or create the Checkout Session
-  res.json({session_id: session.id});
+const db = require("../models/");
+
+router.get('/config', async (req, res) => {
+  res.send({
+    publicKey: process.env.STRIPE_PUBLISHABLE_KEY,
+  });
 });
 
 router.get('/checkout-session', async (req, res) => {
@@ -13,69 +17,81 @@ router.get('/checkout-session', async (req, res) => {
   res.send(session);
 });
 
-router.post('/create-checkout-session', async (req, res) => {
-  const domainURL = process.env.DOMAIN;
+router.post('/create-checkout-session/:id', async (req, res) => {
+  db.cart.findOne({
+    where: {
+      id: req.params.id
+    }, include: [db.item]
+  }).then(async cartInfo => {
+    const domainURL = process.env.DOMAIN;
+    let cartObj =
+    {
+      payment_method_types: ['card'],
+      line_items: [],
+      mode: 'payment',
+      // success_url: `${domainURL}/?session_id=${req.query.sessionId}`,
+      success_url: `${domainURL}/success`,
+      cancel_url: `${domainURL}/failure`,
+      // success_url: `${domainURL}/success.html?session_id={CHECKOUT_SESSION_ID}`,
+      // cancel_url: `${domainURL}/canceled.html`,
+    }
+    for (let i = 0; i < cartInfo.items.length; i++) {
+      cartObj.line_items.push(
+        {
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: cartInfo.items[i].name
+            },
+            unit_amount: cartInfo.items[i].prices_amountMax*100,
+          },
+          quantity: 1,
+        },
+      )
+    }
+    // const domainURL = process.env.DOMAIN;
+    const session = await stripe.checkout.sessions.create(cartObj)
+    res.send({
+      sessionId: session.id,
+    });
+  })
+})
 
-  const { quantity, locale } = req.body;
-  // Create new Checkout Session for the order
-  // Other optional params include:
-  // [billing_address_collection] - to display billing address details on the page
-  // [customer] - if you have an existing Stripe Customer ID
-  // [customer_email] - lets you prefill the email input in the Checkout page
-  // For full details see https://stripe.com/docs/api/checkout/sessions/create
-  const session = await stripe.checkout.sessions.create({
-    payment_method_types: process.env.PAYMENT_METHODS.split(', '),
-    mode: 'payment',
-    locale: locale,
-    line_items: [
-      {
-        price: process.env.PRICE,
-        quantity: quantity
-      },
-    ],
-    // ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
-    success_url: `${domainURL}/success.html?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${domainURL}/canceled.html`,
-  });
+router.post('/webhook', async (req, res) => {
+  let data;
+  let eventType;
+  // Check if webhook signing is configured.
+  if (process.env.STRIPE_WEBHOOK_SECRET) {
+    // Retrieve the event by verifying the signature using the raw body and secret.
+    let event;
+    let signature = req.headers['stripe-signature'];
 
-  res.send({
-    sessionId: session.id,
-  });
+    try {
+      event = stripe.webhooks.constructEvent(
+        req.rawBody,
+        signature,
+        process.env.STRIPE_WEBHOOK_SECRET
+      );
+    } catch (err) {
+      console.log(`⚠️  Webhook signature verification failed.`);
+      return res.sendStatus(400);
+    }
+    // Extract the object from the event.
+    data = event.data;
+    eventType = event.type;
+  } else {
+    // Webhook signing is recommended, but if the secret is not configured in `config.js`,
+    // retrieve the event data directly from the request body.
+    data = req.body.data;
+    eventType = req.body.type;
+  }
+
+  if (eventType === 'checkout.session.completed') {
+    console.log(`🔔  Payment received!`);
+  }
+
+  res.sendStatus(200);
 });
-
-// // THIS IS FOR STRIPE
-// router.get('/public-keys', (req, res) => {
-//   res.send({ key: process.env.STRIPE_PUBLISHABLE_KEY })
-// })
-
-// // THIS IS FOR STRIPE BUT IS NOT HOOKED UP
-// router.post('/my-route', (req, res) => {
-//   console.log('body', req.body)
-//   // PUT DATA IN DB
-//   res.send(req.body);
-// })
-
-// // THIS IS FOR STRIPE WEBHOOKS. WE DON'T HAVE TO USE, BUT I WOULD LIKE TO
-// router.post('/webhook', (req, res) => {
-//   const event = req.body;
-
-//   switch (event.type) {
-//     case 'checkout.session.completed':
-//       const session = event.data.object;
-//       console.log("Checkout Session ID: ", session.id)
-//       break;
-
-//     case 'payment_intent.created':
-//       const paymentIntent = event.data.object
-//       console.log('PaymentIntent Created ', paymentIntent.id)
-//       break;
-
-//     default:
-//       console.log('Unknown event type: ' + event.type)
-//   }
-//   res.send({ message: 'success' });
-// })
-
 // EXPORT
 // ===============================================================
 module.exports = router;

@@ -46,6 +46,11 @@ router.get('/signup',(req,res)=>{
     res.render('adduser')
 })
 
+router.get("/success", (req, res) => {
+    res.render('success')
+})
+
+
 router.get('/settings',(req,res)=>{
     res.render('settings')
 })
