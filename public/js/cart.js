@@ -66,11 +66,9 @@ $(document).ready(function () {
             // Setup event handler to create a Checkout Session on submit
             document.querySelector('#submit').addEventListener('click', function (evt) {
                 createCheckoutSession().then(function (data) {
-                    stripe
-                        .redirectToCheckout({
-                            sessionId: data.sessionId,
-                        })
-                        .then(handleResult);
+                    stripe.redirectToCheckout({
+                        sessionId: data.sessionId,
+                    }).then(handleResult);
                 });
             });
         });
