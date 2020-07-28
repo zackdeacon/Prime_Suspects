@@ -18,16 +18,6 @@ if (document.readyState == 'loading') {
     ready()
 }
 
-// let user = "";
-
-// function findUser() {$.ajax('/readsessions').done(function(data){
-//     return (data.user);
-// })
-// }
-// findUser();
-// FUNCTIONS
-// ===========================================================
-
 function ready() {
     getUserId();
      //     const removeCartItemButtons = $('.remove-button')
@@ -66,7 +56,6 @@ function ready() {
     }).done(function(data){
         console.log(data);
     })  
-// }
     })
 
     $(".zackRemoveBtn").on("click", function(data){

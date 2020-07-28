@@ -18,19 +18,19 @@ router.delete("/cart/delete/:cartId/:itemId", function (req, res) {
 
 
 
-  //PLACEHOLDER FROM JOE route to add items to shopping cart 
+//PLACEHOLDER FROM JOE route to add items to shopping cart 
 router.post("/api/items", function (req, res) {
-    db.cart.findOne({
-        where:{
-            id:req.session.user.cartId
-        }
-  }).then(cartObj=>{
-      cartObj.addItem(req.body.itemId)
-      res.json(cartObj);
-    })
+  db.cart.findOne({
+    where: {
+      id: req.session.user.cartId
+    }
+  }).then(cartObj => {
+    cartObj.addItem(req.body.itemId)
+    res.json(cartObj);
+  })
 })
 
-router.get("/api/carts/:id", function (req, res){
+router.get("/api/carts/:id", function (req, res) {
   db.cart.findOne({
     where: {
       id: req.params.id
@@ -47,6 +47,6 @@ router.get("/api/carts/:id", function (req, res){
 //     res.render('cart')
 // })
 
-  // EXPORT
+// EXPORT
 // ===============================================================
 module.exports = router;
