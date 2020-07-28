@@ -49,7 +49,7 @@
 <div class="row">
          {{#each searchItems}}
         <div class="col s12 m6 l3">
-            <div class="card zackCard">
+            <div class="card zackDiv hoverable zackCard">
                 <div class="card-content zackContent">
                     <p class="blue-text">{{this.name}}</p>
                 </div>
@@ -64,11 +64,11 @@
                     <br>
                     </div>
                 <div class="card-content">
-                    <button data-id={{id}} type="submit" class="btn purple submit zackSubmit">Add to Cart</button>
+                    <button data-id={{id}} type="submit" class="btn-flat waves-effect purple submit zackSubmit">Add to Cart</button>
                     </div>
             </div>
-        </div>
-  {{/each}}
+        </div>  
+         {{/each}}
 
 </div>
 

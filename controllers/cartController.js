@@ -5,17 +5,18 @@ const router = express.Router();
 const db = require("../models/");
 
 //route to delete items from shopping cart 
-// router.delete("/api/carts/:id", (req, res) => {
-//   db.cartitems.destroy({
-//     where: {
-//       itemId: req.params.id
-//     }
-//   }).then(function (cartItemDelete) {
-//     res.json(cartItemDelete);
-//   }).catch(err => {
-//     res.status(500).end()
-//   })
-// })
+router.delete("/cart/delete/:cartId/:itemId", function (req, res) {
+      db.cart.findOne({ 
+      where: {
+        id: req.params.cartId
+      }
+    }).then(function (cartItem){
+      cartItem.removeItem(req.params.itemId)   
+      res.send("success")
+      })
+    })
+
+
 
 //PLACEHOLDER FROM JOE route to add items to shopping cart 
 router.post("/api/items", function (req, res) {
@@ -34,9 +35,10 @@ router.get("/api/carts/:id", function (req, res) {
     where: {
       id: req.params.id
     }, include: [db.item]
-  }).then(function (cart) {
-    console.log(cart)
+  }).then(function(cart){
+    // console.log(cart);
     res.json(cart);
+
   })
 })
 
