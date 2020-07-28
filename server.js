@@ -43,7 +43,7 @@ const stripeRoutes = require("./controllers/stripeController.js");
 app.use(stripeRoutes);
 
 
-var PORT = process.env.PORT || 4350;
+var PORT = process.env.PORT || 4351;
 db.sequelize.sync({force:false}).then(function() {
   app.listen(PORT, function() {
     console.log("App now listening on port:", PORT);
