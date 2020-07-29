@@ -29,11 +29,8 @@ router.post('/create-checkout-session/:id', async (req, res) => {
       payment_method_types: ['card'],
       line_items: [],
       mode: 'payment',
-      // success_url: `${domainURL}/?session_id=${req.query.sessionId}`,
-      success_url: `${domainURL}/success`,
-      cancel_url: `${domainURL}/failure`,
-      // success_url: `${domainURL}/success.html?session_id={CHECKOUT_SESSION_ID}`,
-      // cancel_url: `${domainURL}/canceled.html`,
+      success_url: `${domainURL}success`,
+      cancel_url: `${domainURL}failure`,
     }
     for (let i = 0; i < cartInfo.items.length; i++) {
       cartObj.line_items.push(
