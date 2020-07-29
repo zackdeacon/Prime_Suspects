@@ -115,6 +115,21 @@ $.ajax({
   
 })
 
+$(".zackSubmitSideNav").on("submit", function (event) {
+    event.preventDefault();
+    let searched = $(".zackGrabSideNav").val();
+    //   console.log(searched);
+    $.ajax({
+        url: `/search/${$(".zackGrabSideNav").val()}`,
+        method: "GET"
+    }).done(data => {
+        location.href = `/search/${searched}`
+    }).fail(err => {
+        alert('something went wrong');
+        window.location.reload();
+    })
+})
+
 
 // function purchaseClicked() {
 //     alert('Purchased')
