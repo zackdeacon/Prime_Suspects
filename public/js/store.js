@@ -86,3 +86,4 @@ $("#zackSubmitSideNav").on("submit", function (event) {
         window.location.reload();
     })
 })
+

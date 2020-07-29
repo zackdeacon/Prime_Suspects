@@ -11,6 +11,7 @@
 </head>
 
 <body>
+
 <header>
 
   <!-- side nav bar for mobile-->
@@ -23,74 +24,61 @@
       <i class="material-icons">search</i></li>
     </form>
       <li class="divider"></li>
-     <li class="light-blue"><a href="/cartRoute">Cart</a>
+      <li class="light-blue"><a href="/cartRoute">Cart</a>
       </li>
-    <li class="divider"></li>
-    <li class="blue-grey lighten-1"><a href="/settings">Edit Profile</a></li>
-    
-    <li class="divider"></li>
-    <li class="blue-grey darken-1"><a href="/logout">Log Out</a></li>
-    
-  </ul>
-
-
-  <!-- container for navbar -->
+      <li class="divider"></li>
+      <li class="blue-grey lighten-1"><a href="/settings">Edit Profile</a></li>
+      <li class="divider"></li>
+      <li class="blue-grey darken-1"><a href="/logout">Log Out</a></li>
+    </ul>
+    <!-- container for navbar -->
     <!-- dropdown menu for navbar -->
     <ul id="dropdown1" class="dropdown-content right hide-on-med-and-down">
       <li class="blue-grey lighten-4"><a href="/">Home</a></li>
       <li class="divider"></li>
       <li class="light-blue"><a href="/cartRoute">Cart
-      <i class="material-icons">add_shopping_cart</i></a></li>
-            <li class="divider"></li>
-     <li class="blue-grey darken-1"><a href="/settings">Edit Profile</a></li>
+          <i class="material-icons">add_shopping_cart</i></a></li>
       <li class="divider"></li>
-     <li class="blue-grey darken-4"><a href="/logout">Log Out</a></li>
+      <li class="blue-grey darken-1"><a href="/settings">Edit Profile</a></li>
+      <li class="divider"></li>
+      <li class="blue-grey darken-4"><a href="/logout">Log Out</a></li>
       <li class="divider"></li>
     </ul>
-
-
-
-
     <!-- navbar -->
     <nav>
       <div class="nav-wrapper cyan lighten-2">
         <div class="left off-set col s4 m4 l4">
           <!-- hamburger menu -->
           <div>
-          <a class="sidenav-trigger" data-target="mobile-nav">
-            <i class="material-icons">menu</i>
-          </a>
-
+            <a class="sidenav-trigger" data-target="mobile-nav">
+              <i class="material-icons">menu</i>
+            </a>
           </div>
           <!-- searchbar -->
-        <div class="col s8 hide-on-med-and-down">
-          <form id="zackSubmit">
-            <div class="input-field "  id="zackSearch">
-              <input class="zackGrab" id="search" type="search" required>
-              <label class="label-icon" for="search"><i class="material-icons">search</i>
-              </label>
-              <i class="material-icons closed">close</i>
-            </div>
-          </form>
+          <div class="col s8 hide-on-med-and-down">
+            <form id="zackSubmit">
+              <div class="input-field " id="zackSearch">
+                <input class="zackGrab" id="search" type="search" required>
+                <label class="label-icon" for="search"><i class="material-icons">search</i>
+                </label>
+                <i class="material-icons closed">close</i>
+              </div>
+            </form>
+          </div>
         </div>
-    
-  </div>
-
         <div class="brand-logo center">
           <img class="responsive-img z-depth-5" src="\images\Logo2.jpeg">
         </div>
         <ul class="right" id="navList">
           <!-- Dropdown Trigger -->
-
           <li id="navbar-li"><a class="dropdown-trigger button-collapse" href="#!" data-target="dropdown1"
               data-activates="dropdown-trigger button-collapse"><span id="navbarUser">Login</span>
               <i class="material-icons right hide-on-med-and-down">arrow_drop_down</a></i></li>
         </ul>
       </div>
-
-
-</header>
-  <main>
+  </header> 
+  
+   <main>
 
   {{{ body }}}
 
