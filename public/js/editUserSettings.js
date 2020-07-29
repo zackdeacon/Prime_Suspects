@@ -12,16 +12,15 @@ $(document).ready(function () {
     const userPhoneNumber = $("#userPhoneNumber");
     let userID;
     getUserData();
-    
+
     // ADDS AN EVENT LISTENER WHEN SUBMIT IS CLICKED
     $("#editUser").on("click", handleFormSubmit);
     $("#logout-button").on("click", logout)
-    // $("#deleteUser").on("click", deleteUser)
 
     function handleFormSubmit(event) {
         event.preventDefault();
 
-        // CONSTRUCTS A NEW USER OBJECT
+        // CONSTRUCTS AN EDIT USER OBJECT
         // ======================================================================================
         var userObj = {
             email: userEmailInput.val(),
@@ -42,7 +41,6 @@ $(document).ready(function () {
             url: "/settings",
             data: userObj,
         }).done(function (data) {
-            console.log(data);
             location.href = "/logout"
         }).fail(function (err) {
             console.log(err);
@@ -55,24 +53,10 @@ $(document).ready(function () {
         location.href = "/logout"
     }
 
-    // function deleteUser() {
-    //     event.preventDefault();
-    //     console.log(userID)
-    //     $.ajax({
-    //         method: "DELETE",
-    //         url: "/user/" + userID,
-    //     }).done(function (data) {
-    //         // location.href = "/"
-    //     }).fail(function (err) {
-    //         console.log(err);
-    //         location.reload();
-    //     })
-    // }
-
     function getUserData() {
         $.ajax('/readsessions').done(function (data) {
             if (data.user) {
-                userID=(data.user.id)
+                userID = (data.user.id)
                 userEmailInput.val(data.user.email);
                 userStreetAddressInput.val(data.user.address);
                 userCityInput.val(data.user.city);

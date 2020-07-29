@@ -1,21 +1,15 @@
 
 
-.dropdown-content li > a, .dropdown-content li > span {
+ .dropdown-content li > a, .dropdown-content li > span {
     font-size: 16px;
     color: white;
     display: block;
     line-height: 22px;
     padding: 14px 16px;
-  }
+  } 
 
 
-.dropdown-content li > a, .dropdown-content li > span {
-  font-size: 16px;
-  color: white;
-  display: block;
-  line-height: 22px;
-  padding: 14px 16px;
-}
+
 label {
 color: #9575cd;
 }

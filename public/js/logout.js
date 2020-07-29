@@ -1,3 +1,5 @@
-setInterval(() => {
-    location.href = "/"
-}, 2000);
+$(document).ready(function () {
+    setInterval(() => {
+        location.href = "/"
+    }, 2000);
+})

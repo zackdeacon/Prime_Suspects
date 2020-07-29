@@ -3,7 +3,6 @@ $(document).ready(function () {
   // CAPTURES THE VALUES
   // ======================================================================================
   const userEmailInput = $("#userEmail");
-  const userNameInput = $("#userName");
   const userPasswordInput = $("#userPassword");
   const userStreetAddressInput = $("#userStreetAddress");
   const userCityInput = $("#userCity");
@@ -13,17 +12,16 @@ $(document).ready(function () {
   const userPhoneNumber = $("#userPhoneNumber");
   const userForm = $("#addUser");
 
-// ADDS AN EVENT LISTENER WHEN SUBMIT IS CLICKED
+  // ADDS AN EVENT LISTENER WHEN SUBMIT IS CLICKED
   $(userForm).on("submit", handleFormSubmit);
 
 
-// FUNCTIONS
+  // FUNCTIONS
   // ======================================================================================
   function handleFormSubmit(event) {
     event.preventDefault();
     if (
       !userEmailInput.val().trim() ||
-      // !userNameInput.val().trim() ||
       !userPasswordInput.val().trim() ||
       !userStreetAddressInput.val().trim() ||
       !userCityInput.val().trim() ||
@@ -40,18 +38,13 @@ $(document).ready(function () {
       email: userEmailInput
         .val()
         .trim(),
-      // username: userNameInput
-      //   .val()
-      //   .trim(),
       password: userPasswordInput
         .val()
         .trim(),
       name: userFullNameInput
         .val(),
-      // .trim(),
       address: userStreetAddressInput
         .val(),
-      // .trim()
       city: userCityInput
         .val()
         .trim(),
@@ -70,16 +63,13 @@ $(document).ready(function () {
 
   function submitUser(newUserObj) {
     $.ajax({
-      url:"/signup",
-      method:"POST",
+      url: "/signup",
+      method: "POST",
       data: newUserObj
-    }).done(function(data){
-      console.log('data');
-      // alert('sign up worked!')
+    }).done(function (data) {
       location.href = "/login"
-    }).fail(function(err){
+    }).fail(function (err) {
       console.log(err);
-      // alert("something went wrong!")
       location.reload();
     })
   }
