@@ -4,11 +4,11 @@
 let userId;
 function getUserId() {
 
-// V=- NEEDS ADJUSTING TO JQUERY -=V //
-$.ajax('/readsessions').done(data => {
-    userId = data.user.cartId
-    // createCheckoutSession(cartId)
-})
+    // V=- NEEDS ADJUSTING TO JQUERY -=V //
+    $.ajax('/readsessions').done(data => {
+        userId = data.user.cartId
+        // createCheckoutSession(cartId)
+    })
 }
 // GLOBAL VARIABLES
 // ===========================================================
@@ -20,7 +20,7 @@ if (document.readyState == 'loading') {
 
 function ready() {
     getUserId();
-     //     const removeCartItemButtons = $('.remove-button')
+    //     const removeCartItemButtons = $('.remove-button')
     //     for (let i = 0; i < removeCartItemButtons.length; i++) {
     //         const button = removeCartItemButtons[i]
     //         button.addEventListener('click', removeCartItem)
@@ -42,39 +42,39 @@ function ready() {
     //     document.getElementsByClassName('btn-purchase')[0].addEventListener('click', purchaseClicked)
 
 
-    $(".zackSubmit").on("click", function(data){
+    $(".zackSubmit").on("click", function (data) {
         // console.log(data);
         // if(cookie.user=== "undefined"){
         //     location.href = "/"
         //         } else {
-    let clickedId = $(this).attr("data-id");
-            console.log(clickedId);
-    $.ajax({
-        url:"/api/items/",
-        method: "POST",
-        data: {itemId: clickedId}
-    }).done(function(data){
-        console.log(data);
-    })  
+        let clickedId = $(this).attr("data-id");
+        console.log(clickedId);
+        $.ajax({
+            url: "/api/items/",
+            method: "POST",
+            data: { itemId: clickedId }
+        }).done(function (data) {
+            console.log(data);
+        })
     })
 
-    $(".zackRemoveBtn").on("click", function(data){
+    $(".zackRemoveBtn").on("click", function (data) {
         // console.log(data);
         // if(cookie.user=== "undefined"){
         //     location.href = "/"
         //         } else {
-            console.log(userId)
-    let clickedId = $(this).attr("data-id");
-            console.log(clickedId);
-    $.ajax({
-        url:`/cart/delete/${userId}/${clickedId}`,
-        method: "DELETE",
-        data: {itemId: clickedId}
-    }).done(function(data){
-        console.log(data);
-        location.reload();
-    })  
-// }
+        console.log(userId)
+        let clickedId = $(this).attr("data-id");
+        console.log(clickedId);
+        $.ajax({
+            url: `/cart/delete/${userId}/${clickedId}`,
+            method: "DELETE",
+            data: { itemId: clickedId }
+        }).done(function (data) {
+            console.log(data);
+            location.reload();
+        })
+        // }
     })
 }
 
@@ -99,22 +99,35 @@ function updateCartTotal() {
     document.getElementsByClassName('cart-total-price')[0].innerText = `$ + ${total}`
 }
 
-$("#zackSubmit").on("submit", function(event){
+$("#zackSubmit").on("submit", function (event) {
     event.preventDefault();
-  let searched = $(".zackGrab").val();
-//   console.log(searched);
-$.ajax({
-    url:`/search/${$(".zackGrab").val()}`,
-    method:"GET"
-}).done(data=>{
-    location.href = `/search/${searched}`
-}).fail(err=>{
-    alert('something went wrong');
-    window.location.reload();
-})
-  
+    let searched = $(".zackGrab").val();
+    //   console.log(searched);
+    $.ajax({
+        url: `/search/${$(".zackGrab").val()}`,
+        method: "GET"
+    }).done(data => {
+        location.href = `/search/${searched}`
+    }).fail(err => {
+        alert('something went wrong');
+        window.location.reload();
+    })
 })
 
+$("#zackSubmitSideNav").on("submit", function (event) {
+    event.preventDefault();
+    let searched = $("#search").val();
+    //   console.log(searched);
+    $.ajax({
+        url: `/search/${searched}`,
+        method: "GET"
+    }).done(data => {
+        location.href = `/search/${searched}`
+    }).fail(err => {
+        alert('something went wrong');
+        window.location.reload();
+    })
+})
 
 // function purchaseClicked() {
 //     alert('Purchased')
