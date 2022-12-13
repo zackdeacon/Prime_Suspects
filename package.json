@@ -6,7 +6,7 @@
     "bcrypt": "^5.0.0",
     "csv-parser": "^2.3.3",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-handlebars": "^5.1.0",
     "express-session": "^1.17.1",
     "expression": "0.0.1",
